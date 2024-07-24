@@ -1,0 +1,82 @@
+.touImg img {
+    width: 100%;
+    height: 180px;
+    border-radius: 5px 5px 0 0;
+}
+.card {
+    border: none !important;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+.card-body {
+    height: 150px;
+}
+.touImg {
+    width: 100%;
+    height: 180px;
+}
+.touImg span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: max-content;
+    height: max-content;
+    z-index: 10;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px 0 0 0;
+}
+
+.cardTop span {
+    color: var(--secondary-color);
+}
+.tourRating {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+.tourLocation {
+    color: var(--heading-color);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.tourRating i,
+.tourLocation i {
+    font-size: 1rem;
+}
+
+.tourTitle {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.tourTitle a {
+    text-decoration: none;
+    color: var(--heading-color);
+    transition: 0.3s;
+}
+.tourTitle a:hover {
+    color: var(--secondary-color);
+}
+.cardBottom h5 {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+.cardBottom h5 span {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.8rem;
+}
+.bookinBtn {
+    background: var(--secondary-color) !important;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem !important;
+}
+.bookinBtn a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #fff;
+}
+.bookinBtn a:hover {
+    color: black;
+}

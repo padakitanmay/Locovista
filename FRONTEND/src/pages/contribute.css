@@ -1,0 +1,16 @@
+.emergency {
+    border: 1px solid var(--secondary-color) !important;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    border-radius: 10px;
+    display: flex;
+    padding: 3rem;
+}
+.emergency img {
+    width: 100%;
+    height: 80px;
+}
