@@ -8,6 +8,7 @@ import {
     getTourBySearch,
     getFeaturedTour,
     getTourCount,
+    getCoordinates,
 } from "../controller/tourController.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
@@ -23,10 +24,12 @@ router.get("/:id", getSingleTour);
 
 router.get("/", getAllTour);
 
+router.post("/getCoordinates", getCoordinates);
 router.get("/search/getTourBySearch", getTourBySearch);
 
 router.get("/search/getFeaturedTours", getFeaturedTour);
 
 router.get("/search/getTourCount", getTourCount);
+
 
 export default router;

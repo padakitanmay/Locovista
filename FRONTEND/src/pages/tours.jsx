@@ -17,7 +17,6 @@ const Tours = () => {
     const { data: tourCount } = useFetch(
         `${BASE_URL}/tours/search/getTourCount`
     );
-    console.log(tourCount);
 
     useEffect(() => {
         const pages = Math.ceil(tourCount / 8);

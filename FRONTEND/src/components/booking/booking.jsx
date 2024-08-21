@@ -75,7 +75,6 @@ const Booking = ({ tour }) => {
                 </Form>
             </div>
             <div className="mt-4">
-                {/* Uncomment the following code block for list groups
                 <div className="border-0 p-0">
                     <h5 className="flex items-center gap-1 text-gray-700 text-base">
                         ₹{price}
@@ -91,7 +90,7 @@ const Booking = ({ tour }) => {
                     <h5 className="text-gray-800 font-bold text-lg">Total</h5>
                     <span className="text-gray-800 font-bold text-lg">₹{totalAmount}</span>
                 </div>
-                */}
+               
                 <Button
                     className="btn w-full mt-4 bg-primary text-white py-2 rounded-lg"
                     onClick={handleClick}
