@@ -33,8 +33,8 @@ const SearchBar = () => {
     };
 
     return (
-        <Col lg='12' className='mt-[28rem] p-2 rounded-full flex shadow-lg bg-teal-400'>
-            <Form className='flex items-center space-x-3 gap-4'>
+        <Col lg='12' className='mt-[28rem] p-2 rounded-3xl mx-6 flex items-center shadow-lg bg-teal-400 w-auto'>
+            <Form className='flex items-center gap-4'>
                 <FormGroup className='flex gap-3 border-r-2 border-gray-300 pr-3'>
                     <span className='text-2xl text-red-400'>
                         <i className='ri-map-pin-2-line'></i>
@@ -45,7 +45,7 @@ const SearchBar = () => {
                             type='text'
                             placeholder='Where are you going?'
                             ref={locationRef}
-                            className='border-none rounded-lg text-sm placeholder-gray-500 focus:outline-none'
+                            className='border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none'
                         />
                     </div>
                 </FormGroup>
@@ -59,7 +59,7 @@ const SearchBar = () => {
                             type='number'
                             placeholder='Distance km'
                             ref={distanceRef}
-                            className='border-none rounded-lg text-sm placeholder-gray-500 focus:outline-none'
+                            className='border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none'
                         />
                     </div>
                 </FormGroup>
@@ -73,7 +73,7 @@ const SearchBar = () => {
                             type='number'
                             placeholder='0'
                             ref={maxGroupSizeRef}
-                            className='border-none rounded-lg text-sm placeholder-gray-500 focus:outline-none'
+                            className='border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none'
                         />
                     </div>
                 </FormGroup>

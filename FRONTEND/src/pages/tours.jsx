@@ -29,8 +29,8 @@ const Tours = () => {
         <>
             <CommonSection title={"Places to Visit"} />
             <section>
-                <Container>
-                    <Row>
+                <Container className="">
+                    <Row className="flex justify-center">
                         <SearchBar />
                     </Row>
                 </Container>
