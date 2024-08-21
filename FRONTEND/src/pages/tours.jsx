@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CommonSection from "../shared/commonSection";
-import "./tours.css";
 import { Container, Row, Col } from "reactstrap";
 import TourCard from "./../shared/placeCard";
 import SearchBar from "./../shared/searchbar";
@@ -36,31 +35,31 @@ const Tours = () => {
                     </Row>
                 </Container>
             </section>
-            <section className='pt-0'>
+            <section className="pt-0">
                 <Container>
                     {loading && (
-                        <h4 className='text-center pt-5'>Loading......</h4>
+                        <h4 className="text-center pt-5">Loading......</h4>
                     )}
-                    {error && <h4 className='text-center pt-5'>{error}</h4>}
+                    {error && <h4 className="text-center pt-5">{error}</h4>}
                     {!loading && !error && (
                         <Row>
                             {tours?.map((tour) => (
-                                <Col lg='3' className='mb-4' key={tour.id}>
+                                <Col lg="3" className="mb-4" key={tour.id}>
                                     <TourCard tour={tour} />
                                 </Col>
                             ))}
-                            <Col lg='12'>
-                                <div className='tourpage d-flex align-items-center justify-content-center mt-4 gap-3 '>
+                            <Col lg="12">
+                                <div className="tourpage flex items-center justify-center mt-4 gap-3">
                                     {[...Array(pageCount).keys()].map(
                                         (number) => (
                                             <span
                                                 key={number}
                                                 onClick={() => setPage(number)}
-                                                className={
+                                                className={`w-8 h-8 p-1.5 rounded-full flex items-center justify-center cursor-pointer text-xl font-bold border border-secondary-color ${
                                                     page === number
-                                                        ? "active_page"
-                                                        : " "
-                                                }
+                                                        ? "bg-secondary-color text-white"
+                                                        : "text-heading-color"
+                                                }`}
                                             >
                                                 {number + 1}
                                             </span>

@@ -1,28 +1,14 @@
 import React, { useRef, useEffect, useContext } from "react";
-import "./header.css";
 import { Container, Row, Button } from "reactstrap";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { AuthContext } from "../context/AuthContext";
 
 const nav_links = [
-    {
-        path: "/home",
-        display: "Home",
-    },
-    {
-        path: "/tours",
-        display: "Tours",
-    },
-    {
-        path: "/contribute",
-        display: "Contribute",
-    },
-
-    {
-        path: "/about",
-        display: "About",
-    },
+    { path: "/home", display: "Home" },
+    { path: "/tours", display: "Tours" },
+    { path: "/contribute", display: "Contribute" },
+    { path: "/about", display: "About" },
 ];
 
 const Header = () => {
@@ -41,87 +27,86 @@ const Header = () => {
                 document.body.scrollTop > 80 ||
                 document.documentElement.scrollTop > 80
             ) {
-                headerRef.current.classList.add("sticky_heade");
+                headerRef.current.classList.add("sticky_header");
             } else {
-                headerRef.current.classList.remove("sticky_heade");
+                headerRef.current.classList.remove("sticky_header");
             }
         });
     };
 
     useEffect(() => {
         stickyHeaderFunc();
-    });
-    return (
-        <>
-            <header className='header' ref={headerRef}>
-                <Container>
-                    <Row>
-                        <div className='nav_wrapper d-flex align-items-center justify-content-between'>
-                            {/*logo*/}
-                            <div className='logo w-5 h-50'>
-                                <img src={logo} alt='' />
-                            </div>
+    }, []);
 
-                            {/* menu */}
-                            <div className='navigation'>
-                                <ul className='menu d-flex align-items-center gap-4'>
-                                    {nav_links.map((item, index) => (
-                                        <li className='nav_item' key={index}>
-                                            <NavLink
-                                                to={item.path}
-                                                className={(navClass) =>
-                                                    navClass.isActive
-                                                        ? "active_link"
-                                                        : ""
-                                                }
-                                            >
-                                                {item.display}
-                                            </NavLink>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            {/*Login/Register */}
-                            <div className='nav_right d-flex align-items-center gap-5 '>
-                                <div className='nav_btns d-flex align-items-center gap-3'>
-                                    {user ? (
-                                        <>
-                                            <h5 className='mb-0'>
-                                                {user.username}
-                                            </h5>
-                                            {/* {console.log(user.username)} */}
-                                            <Button
-                                                className='btn btn-dark'
-                                                onClick={logout}
-                                            >
-                                                Logout
-                                            </Button>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Button className='btn secondary_btn'>
-                                                <Link to='/login'>Login</Link>
-                                            </Button>
-                                            <Button className='btn primary_btn'>
-                                                <Link to='/register'>
-                                                    Register
-                                                </Link>
-                                            </Button>
-                                        </>
-                                    )}
-                                    <Button className='btn emergency_btn'>
-                                        <Link to='/emergency'>Emergency</Link>
-                                    </Button>
-                                </div>
-                                <span className='mobile_menu'>
-                                    <i class='ri-menu-line'></i>
-                                </span>
+    return (
+        <header
+            className="w-full h-[80px] flex items-center justify-between bg-transparent transition-all duration-300 ease-in-out"
+            ref={headerRef}
+        >
+            <Container>
+                <Row className="h-full items-center">
+                    <div className="flex items-center justify-between w-full h-full">
+                        {/* Logo */}
+                        <div className="w-[100px] h-[100px]">
+                            <img
+                                src={logo}
+                                alt="Logo"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+
+                        {/* Menu */}
+                        <div className="flex flex-grow justify-center">
+                            <ul className="flex space-x-4 mb-0">
+                                {nav_links.map((item, index) => (
+                                    <li key={index}>
+                                        <NavLink
+                                            to={item.path}
+                                            className={({ isActive }) =>
+                                                `text-gray-800 font-medium text-lg ${isActive ? 'text-blue-500' : 'hover:text-blue-300'}`
+                                            }
+                                        >
+                                            {item.display}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Login/Register */}
+                        <div className="flex items-center space-x-5">
+                            <div className="flex space-x-3">
+                                {user ? (
+                                    <>
+                                        <h5 className="mb-0 text-lg font-semibold text-gray-800">
+                                            {user.username}
+                                        </h5>
+                                        <Button
+                                            className="bg-gray-800 text-white py-2 px-4 rounded"
+                                            onClick={logout}
+                                        >
+                                            Logout
+                                        </Button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Button className="py-2 px-4 rounded">
+                                            <Link to="/login" className="text-white no-underline">Login</Link>
+                                        </Button>
+                                        <Button className="py-2 px-4 rounded">
+                                            <Link to="/register" className="text-white no-underline">Register</Link>
+                                        </Button>
+                                    </>
+                                )}
+                                <Button className=" bg-blue-700 py-2 px-4 rounded">
+                                    <Link to="/emergency" className="text-white no-underline">Emergency</Link>
+                                </Button>
                             </div>
                         </div>
-                    </Row>
-                </Container>
-            </header>
-        </>
+                    </div>
+                </Row>
+            </Container>
+        </header>
     );
 };
 

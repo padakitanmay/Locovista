@@ -32,15 +32,15 @@ const Contribute = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8">
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <h2 className="text-center text-3xl font-extrabold text-gray-900">Contribute a Tour</h2>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="rounded-md shadow-sm -space-y-px">
+            <div className="rounded-md shadow-sm space-y-4">
               {['title', 'city', 'address', 'distance', 'photo', 'desc', 'price', 'maxGroupSize'].map((field) => (
                 <div key={field}>
-                  <label htmlFor={field} className="sr-only">
+                  <label htmlFor={field} className="block text-sm font-medium text-gray-700">
                     {field.charAt(0).toUpperCase() + field.slice(1)}
                   </label>
                   <input
@@ -50,13 +50,13 @@ const Contribute = () => {
                     value={formData[field]}
                     onChange={handleChange}
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
                   />
                 </div>
               ))}
               <div>
-                <label htmlFor="featured" className="sr-only">
+                <label htmlFor="featured" className="block text-sm font-medium text-gray-700">
                   Featured
                 </label>
                 <input
@@ -65,7 +65,7 @@ const Contribute = () => {
                   type="checkbox"
                   checked={formData.featured}
                   onChange={handleChange}
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
                 <span className="ml-2 text-gray-900">Featured</span>
               </div>
@@ -73,7 +73,7 @@ const Contribute = () => {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Submit
               </button>

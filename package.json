@@ -1,7 +1,7 @@
 {
   "scripts":{
     "dev":"concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server":"cd BACKEND && npm start",
+    "dev:server":"cd BACKEND && npm run start-dev",
     "dev:client":"cd FRONTEND && npm start"
   },
   "dependencies": {

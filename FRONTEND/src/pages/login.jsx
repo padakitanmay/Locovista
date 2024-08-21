@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import "./login.css";
-import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import loginImg from "../assets/images/login.jpg";
 import userIcon from "../assets/images/user.png";
 import { BASE_URL } from "../utills/config";
 import { useAuth } from "../components/context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const { dispatch } = useAuth();
+    let { dispatch } = useAuth();
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({
         email: "",
@@ -36,15 +34,10 @@ const Login = () => {
 
             if (!res.ok) {
                 alert(result.message);
-                // Handle login failure (display error message, etc.)
             } else {
-                // Assuming the backend returns a user object upon successful login
-                const user = result.data;
+                let user = result.data;
                 console.log(user);
-                // Dispatch the user information to your AuthContext
                 dispatch({ type: "LOGIN_SUCCESS", payload: user });
-
-                // Navigate to the desired page after successful login
                 navigate("/home");
             }
         } catch (err) {
@@ -54,54 +47,67 @@ const Login = () => {
     };
 
     return (
-        <section>
-            <Container>
-                <Row>
-                    <Col lg='8' className='m-auto'>
-                        <div className='loginContainer d-flex justify-content-between'>
-                            <div className='loginImg'>
-                                <img src={loginImg} alt='' />
-                            </div>
-                            <div className='loginForm'>
-                                <div className='user'>
-                                    <img src={userIcon} alt='' />
-                                </div>
-                                <h2>Login</h2>
-                                <Form onSubmit={handleClick}>
-                                    <FormGroup>
-                                        <input
-                                            type='email'
-                                            placeholder='Email'
-                                            required
-                                            id='email'
-                                            onChange={handleChange}
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <input
-                                            type='password'
-                                            placeholder='Password'
-                                            required
-                                            id='password'
-                                            onChange={handleChange}
-                                        />
-                                    </FormGroup>
-                                    <Button
-                                        className='btn secondary_btn auth_btn'
-                                        type='submit'
-                                    >
-                                        Login
-                                    </Button>
-                                </Form>
-                                <p>
-                                    Don't have an account?{" "}
-                                    <Link to='/register'>Create</Link>
-                                </p>
-                            </div>
+        <section className="flex justify-center items-center min-h-screen bg-gray-100">
+            <div className="container mx-auto">
+                <div className="flex justify-center">
+                    <div className="bg-white shadow-lg rounded-lg p-8 relative w-full max-w-md">
+                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20">
+                            <img
+                                src={userIcon}
+                                className="w-full h-full object-cover"
+                                alt=""
+                            />
                         </div>
-                    </Col>
-                </Row>
-            </Container>
+                        <div className="text-center mb-8">
+                            <img
+                                src={loginImg}
+                                className="w-1/2 mx-auto h-60 object-contain"
+                                alt=""
+                            />
+                        </div>
+                        <h2 className="text-2xl font-semibold text-gray-700 text-center mb-8">
+                            Login
+                        </h2>
+                        <form onSubmit={handleClick} className="w-full">
+                            <div className="mb-6">
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    required
+                                    id="email"
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                                />
+                            </div>
+                            <div className="mb-6">
+                                <input
+                                    type="password"
+                                    placeholder="Password"
+                                    required
+                                    id="password"
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                            >
+                                Login
+                            </button>
+                        </form>
+                        <p className="text-sm text-gray-500 mt-6 text-center">
+                            Don't have an account?{" "}
+                            <Link
+                                to="/register"
+                                className="text-blue-500 font-medium"
+                            >
+                                Create
+                            </Link>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 };
