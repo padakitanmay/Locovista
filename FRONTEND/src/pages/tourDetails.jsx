@@ -15,8 +15,7 @@ const TourDetails = () => {
     const reviewMsgRef = useRef("");
     const [tourRating, setTourRating] = useState(null);
 
-    const { data: t } = useFetch(`${BASE_URL}/ajencys/${id}`);
-
+    const { data } = useFetch(`${BASE_URL}/tours/${id}`);
     const {
         photo,
         title,
@@ -27,7 +26,7 @@ const TourDetails = () => {
         city,
         distance,
         maxGroupSize,
-    } = t;
+    } = data;
     const { totalRating, avgRating } = calculateAvgRating(reviews);
 
     const submitHandler = (e) => {
@@ -43,7 +42,11 @@ const TourDetails = () => {
                     <Col lg='8'>
                         <div className='w-full mt-4 mb-10'>
                             {photo && photo.length > 0 && (
-                                <img src={photo[0]} alt='' className='w-full rounded-md mb-10' />
+                                <img
+                                    src={photo[0]}
+                                    alt=''
+                                    className='w-full rounded-md mb-10'
+                                />
                             )}
                         </div>
                         <h2 className='text-2xl font-bold'>{title}</h2>
@@ -83,23 +86,27 @@ const TourDetails = () => {
                         <h5 className='text-xl font-semibold'>Description</h5>
                         <p className='text-gray-700'>{desc}</p>
                         <Row className='mt-6'>
-                            {Array.isArray(t.photo) && t.photo.length > 1 && (
-                                <Col xs='12'>
-                                    <Slider>
-                                        {t.photo
-                                            .slice(1)
-                                            .map((photo, index) => (
-                                                <Card key={index} className='border-none'>
-                                                    <img
-                                                        src={photo}
-                                                        alt=''
-                                                        className='w-full rounded-md'
-                                                    />
-                                                </Card>
-                                            ))}
-                                    </Slider>
-                                </Col>
-                            )}
+                            {Array.isArray(data.photo) &&
+                                data.photo.length > 1 && (
+                                    <Col xs='12'>
+                                        <Slider>
+                                            {data.photo
+                                                .slice(1)
+                                                .map((photo, index) => (
+                                                    <Card
+                                                        key={index}
+                                                        className='border-none'
+                                                    >
+                                                        <img
+                                                            src={photo}
+                                                            alt=''
+                                                            className='w-full rounded-md'
+                                                        />
+                                                    </Card>
+                                                ))}
+                                        </Slider>
+                                    </Col>
+                                )}
                         </Row>
                         <div className='mt-8'>
                             <h4 className='text-xl font-semibold'>
@@ -110,7 +117,9 @@ const TourDetails = () => {
                                     {[1, 2, 3, 4, 5].map((rating) => (
                                         <span
                                             key={rating}
-                                            onClick={() => setTourRating(rating)}
+                                            onClick={() =>
+                                                setTourRating(rating)
+                                            }
                                             className='flex items-center text-yellow-500 cursor-pointer'
                                         >
                                             {rating}{" "}
@@ -133,20 +142,33 @@ const TourDetails = () => {
                             </Form>
                             <ListGroup className='mt-4'>
                                 {reviews?.map((review) => (
-                                    <div key={review.id} className='flex items-center gap-4 mb-6'>
-                                        <img src={avatar} alt='' className='w-14 h-14 rounded-full object-cover' />
+                                    <div
+                                        key={review.id}
+                                        className='flex items-center gap-4 mb-6'
+                                    >
+                                        <img
+                                            src={avatar}
+                                            alt=''
+                                            className='w-14 h-14 rounded-full object-cover'
+                                        />
                                         <div className='w-full'>
                                             <div className='flex items-center justify-between'>
                                                 <div>
-                                                    <h5 className='text-lg font-semibold'>{review.user}</h5>
-                                                    <p className='text-gray-500'>{review.date}</p>
+                                                    <h5 className='text-lg font-semibold'>
+                                                        {review.user}
+                                                    </h5>
+                                                    <p className='text-gray-500'>
+                                                        {review.date}
+                                                    </p>
                                                 </div>
                                                 <span className='flex items-center text-yellow-500'>
                                                     {review.rating}{" "}
                                                     <i className='ri-star-fill'></i>
                                                 </span>
                                             </div>
-                                            <h6 className='text-gray-700'>{review.comment}</h6>
+                                            <h6 className='text-gray-700'>
+                                                {review.comment}
+                                            </h6>
                                         </div>
                                     </div>
                                 ))}
@@ -154,7 +176,7 @@ const TourDetails = () => {
                         </div>
                     </Col>
                     <Col lg='4'>
-                        <Booking tour={t} avgRating={avgRating} />
+                        <Booking tour={data} avgRating={avgRating} />
                     </Col>
                 </Row>
             </Container>

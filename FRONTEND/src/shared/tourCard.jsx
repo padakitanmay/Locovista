@@ -43,7 +43,7 @@ const TourCard = ({ tour }) => {
                     </div>
 
                     <h5 className='tourTitle mt-4 text-lg cursor-pointer text-heading hover:text-secondary'>
-                        <Link to={`/ajencys/${_id}`}>{title}</Link>
+                        <Link to={`/tours/${_id}`}>{title}</Link>
                     </h5>
                     <div className='cardBottom flex items-center justify-between mt-3'>
                         <h5 className='text-xl font-semibold'>
