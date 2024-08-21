@@ -29,11 +29,11 @@ const tourSchema = new mongoose.Schema(
         },
         price: {
             type: Number,
-            required: true,
+            // required: true,
         },
         maxGroupSize: {
             type: Number,
-            required: true,
+            // required: true,
         },
 
         reviews: [

@@ -67,7 +67,7 @@ const Home = () => {
                 </Container>
             </section>
 
-            {/* Our Service Section */}
+            {/* Our Service Section
             <section className="py-12">
                 <Container>
                     <Row>
@@ -80,7 +80,7 @@ const Home = () => {
                         <ServicesList />
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
             {/* Featured Tour */}
             <section className="py-12">

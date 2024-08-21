@@ -3,6 +3,7 @@ import Tour from "../models/Tour.js";
 export const createTour = async (req, res) => {
     try {
         const newTour = new Tour(req.body);
+        console.log(newTour)
         const savedTour = await newTour.save();
 
         res.status(200).json({
