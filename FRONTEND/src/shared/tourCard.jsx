@@ -45,6 +45,7 @@ const TourCard = ({ tour }) => {
                         <button className='bg-teal-600 py-1 px-2 rounded hover:bg-gray-600'>
                             <Link to={`/ajencys/${_id}`} className='no-underline text-white '>Book Now</Link>
                         </button>
+                    
                     </div>
                 </CardBody>
             </Card>

@@ -39,8 +39,11 @@ const TourCard = ({ tour }) => {
                         <Link to={`/tours/${_id}`}>{title}</Link>
                     </h5>
                     <div className="cardBottom flex items-center justify-between mt-3">
-                        <button className="bg-secondary bg-teal-600 text-white py-1 px-2 rounded">
+                        <button className="bg-teal-600 text-white py-1 px-2 rounded">
                             <Link to={`/tours/${_id}`} className=" no-underline text-white">Details</Link>
+                        </button>
+                        <button className="bg-teal-600 text-white py-1 px-2 rounded">
+                            <Link to={`/tours/${_id}`} className=" no-underline text-center text-white">Locate</Link>
                         </button>
                     </div>
                 </CardBody>

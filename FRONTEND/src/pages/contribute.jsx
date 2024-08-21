@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Contribute = () => {
   const [formData, setFormData] = useState({
-    title: '',
-    city: '',
-    address: '',
-    distance: '',
-    photo: '',
-    desc: '',
-    price: '',
-    maxGroupSize: '',
+    title: "",
+    city: "",
+    address: "",
+    distance: "",
+    photo: "",
+    desc: "",
+    price: "",
+    maxGroupSize: "",
     featured: false,
   });
 
@@ -17,36 +17,60 @@ const Contribute = () => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   const response = await axios.post('/api/tours', formData);
-    //   console.log('Tour created:', response.data);
-    // } catch (error) {
-    //   console.error('There was an error creating the tour!', error);
-    // }
+    try {
+      const response = await fetch("/api/tours", {
+        method: "POST",
+        enctype: "multipart/form-data",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      console.log("Tour created:", result);
+    } catch (error) {
+      console.error("There was an error creating the tour!", error);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8">
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">Contribute a Tour</h2>
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+            Contribute a Tour
+          </h2>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="rounded-md shadow-sm space-y-4">
-              {['title', 'city', 'address', 'distance', 'photo', 'desc', 'price', 'maxGroupSize'].map((field) => (
+              {["title", "city", "address", "distance", "desc"].map((field) => (
                 <div key={field}>
-                  <label htmlFor={field} className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor={field}
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     {field.charAt(0).toUpperCase() + field.slice(1)}
                   </label>
                   <input
                     id={field}
                     name={field}
-                    type={field === 'distance' || field === 'price' || field === 'maxGroupSize' ? 'number' : 'text'}
+                    type={
+                      field === "distance" ||
+                      field === "price" ||
+                      field === "maxGroupSize"
+                        ? "number"
+                        : "text"
+                    }
                     value={formData[field]}
                     onChange={handleChange}
                     required
@@ -55,8 +79,26 @@ const Contribute = () => {
                   />
                 </div>
               ))}
+
               <div>
-                <label htmlFor="featured" className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700">
+                  photo
+                </label>
+                <input
+                  type="file"
+                  id="photo"
+                  name="photo"
+                  onChange={handleChange}
+                  required
+                  className="mt-1 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded ou"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="featured"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Featured
                 </label>
                 <input
