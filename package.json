@@ -1,10 +1,13 @@
 {
-  "scripts":{
-    "dev":"concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server":"cd BACKEND && npm run start-dev",
-    "dev:client":"cd FRONTEND && npm start"
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd BACKEND && npm run start-dev",
+    "dev:client": "cd FRONTEND && npm start"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
