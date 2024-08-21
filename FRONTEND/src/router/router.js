@@ -34,7 +34,6 @@ const Router = () => {
             <Route path='/register' element={<Register />} />
             <Route path='/tours/search' element={<SerchResultList />} />
             <Route path='/tours/map/:lat/:lng' element={<Map/>}/>
-            {/* <Route path='/search' element={<SerchResultList/>}/> */}
             <Route path='/thank-you' element={<Thankyou />} />
         </Routes>
     );
