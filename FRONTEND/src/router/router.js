@@ -14,6 +14,7 @@ import Urgent from "../pages/urgent";
 import Contribute from "../pages/contribute";
 import Contri from "../pages/contri";
 import Customize from "../pages/customize";
+import Map from "../pages/Map.jsx"
 
 const Router = () => {
     return (
@@ -32,6 +33,7 @@ const Router = () => {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/tours/search' element={<SerchResultList />} />
+            <Route path='/tours/map/:lat/:lng' element={<Map/>}/>
             {/* <Route path='/search' element={<SerchResultList/>}/> */}
             <Route path='/thank-you' element={<Thankyou />} />
         </Routes>
