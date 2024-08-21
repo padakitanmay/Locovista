@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import calculateAvgRating from "../utills/avgRating";
 import { BASE_URL } from "../utills/config";
 
+
 const TourCard = ({ tour }) => {
     const { _id, title, city, photo, featured, reviews, address } = tour;
     const [coords, setCoords] = useState({ lat: null, lng: null });
@@ -36,7 +37,7 @@ const TourCard = ({ tour }) => {
             <Card className='border-none'>
                 <div className='touImg relative w-full h-44'>
                     <img
-                        src={photo}
+                        src={`${BASE_URL.replace("/api/v1", "")}${photo}`}
                         alt='tourImg'
                         className='w-full h-full object-cover rounded-t-lg'
                     />

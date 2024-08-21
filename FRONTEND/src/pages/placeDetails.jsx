@@ -34,7 +34,7 @@ const PlaceDetails = () => {
                         <div className='mb-10'>
                             {photo && photo.length > 0 && (
                                 <img
-                                    src={photo}
+                                src={`${BASE_URL.replace("/api/v1", "")}${photo}`}
                                     alt=''
                                     className='w-full mt-4 rounded-lg'
                                 />

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../utills/config";
+import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Contribute = () => {
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     city: "",
@@ -35,6 +38,7 @@ const Contribute = () => {
       });
       const data = await res.json();
       console.log(data);
+      navigate('/tours');
     } catch (error) {
       console.log(error.message);
     }
@@ -84,23 +88,7 @@ const Contribute = () => {
                   className="mt-1 text-indigo-600 focus:ring-indigo-500 border-gray-300"
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="featured"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Featured
-                </label>
-                <input
-                  id="featured"
-                  name="featured"
-                  type="checkbox"
-                  checked={formData.featured}
-                  onChange={handleChange}
-                  className="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
-                <span className="ml-2 text-gray-900">Featured</span>
-              </div>
+              
             </div>
             <div>
               <button
