@@ -21,7 +21,7 @@ body {
 }
 
 section {
-    padding: 50px 0px;
+    padding: 50px 0;
 }
 
 h1,
@@ -37,6 +37,7 @@ a {
     text-decoration: none;
     color: unset;
 }
+
 ul {
     list-style: none;
 }
@@ -47,14 +48,17 @@ ul {
     border-radius: 50px !important;
     padding: 0.4rem 1.5rem !important;
 }
+
 .emergency_btn a {
     font-size: 1.1rem;
     text-decoration: none;
     color: #fff;
 }
+
 .emergency_btn a:hover {
     color: inherit;
 }
+
 .primary_btn {
     background: var(--secondary-color) !important;
     border: none !important;
@@ -67,9 +71,11 @@ ul {
     text-decoration: none;
     color: #fff;
 }
+
 .primary_btn a:hover {
     color: inherit;
 }
+
 .secondary_btn {
     background: transparent !important;
     color: #0b2727 !important;
@@ -93,9 +99,63 @@ ul {
     width: max-content;
     padding: 0px 0.5rem;
     padding-right: 1rem;
-
     border-radius: 50px;
     font-weight: 500;
     font-size: 1.7rem;
     color: var(--heading-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .section_subtitle {
+        font-size: 1.5rem;
+    }
+    .primary_btn, .secondary_btn, .emergency_btn {
+        padding: 0.3rem 1.2rem !important;
+    }
+    .primary_btn a, .secondary_btn a, .emergency_btn a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .section_subtitle {
+        font-size: 1.3rem;
+        padding: 0px 0.4rem;
+        padding-right: 0.8rem;
+    }
+    .primary_btn, .secondary_btn, .emergency_btn {
+        padding: 0.2rem 1rem !important;
+    }
+    .primary_btn a, .secondary_btn a, .emergency_btn a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section_subtitle {
+        font-size: 1.2rem;
+        padding: 0px 0.3rem;
+        padding-right: 0.6rem;
+    }
+    .primary_btn, .secondary_btn, .emergency_btn {
+        padding: 0.2rem 0.8rem !important;
+    }
+    .primary_btn a, .secondary_btn a, .emergency_btn a {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section_subtitle {
+        font-size: 1rem;
+        padding: 0px 0.2rem;
+        padding-right: 0.5rem;
+    }
+    .primary_btn, .secondary_btn, .emergency_btn {
+        padding: 0.1rem 0.6rem !important;
+    }
+    .primary_btn a, .secondary_btn a, .emergency_btn a {
+        font-size: 0.7rem;
+    }
 }

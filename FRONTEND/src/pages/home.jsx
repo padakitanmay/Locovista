@@ -3,7 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import galleryVideo from "../assets/images/galleryVideo.mp4";
 import Subtitle from "./../shared/subtitle";
 import SearchBar from "../shared/searchbar";
-import ServicesList from "../services/servicesList";
+// import ServicesList from "../services/servicesList";
 import FeaturedTourList from "../featuredTour/featuredTourList";
 import Reviews from "../components/reviews/reviews";
 import homeBg from "../assets/images/abc.jpg"

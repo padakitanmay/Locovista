@@ -6,7 +6,7 @@ import calculateAvgRating from "../utills/avgRating";
 const TourCard = ({ tour }) => {
     const { _id, title, city, photo, price, featured, reviews} = tour;
 
-    
+    console.log(photo)
 
     const { totalRating, avgRating } = calculateAvgRating(reviews);
 
@@ -15,7 +15,7 @@ const TourCard = ({ tour }) => {
             <Card className='border-none'>
                 <div className='touImg relative w-full h-44'>
                     <img
-                        src={photo}
+                        src={`http://localhost:4000${photo[0]}`}
                         alt='tourImg'
                         className='w-full h-full object-cover rounded-t-lg'
                     />
@@ -37,7 +37,7 @@ const TourCard = ({ tour }) => {
                             {totalRating === 0 ? (
                                 "Not Rated"
                             ) : (
-                                <span>({reviews.length})</span>
+                                <span>({reviews?.length})</span>
                             )}
                         </span>
                     </div>

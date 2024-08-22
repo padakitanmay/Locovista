@@ -68,7 +68,7 @@ const TourCard = ({ tour }) => {
                         <Link to={`/tours/${_id}`}>{title}</Link>
                     </h5>
                     <div className='cardBottom flex items-center justify-between mt-3'>
-                        <button className='bg-secondary bg-teal-600 text-white py-1 px-2 rounded'>
+                        <button className=' bg-teal-500 text-white py-1 px-2 rounded'>
                             <Link
                                 to={`/tours/${_id}`}
                                 className='no-underline text-white'
@@ -78,7 +78,7 @@ const TourCard = ({ tour }) => {
                         </button>
                         {/* Render Map button only if lat and lng are available */}
                         {coords.lat && coords.lng && (
-                            <button className='bg-secondary bg-teal-600 text-white py-1 px-2 rounded'>
+                            <button className=' bg-teal-500 text-white py-1 px-2 rounded'>
                                 <Link
                                     to={`/tours/map/${coords.lat}/${coords.lng}`}
                                     className='no-underline text-white'

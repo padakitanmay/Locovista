@@ -10,12 +10,13 @@ import Booking from "../components/booking/booking";
 import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utills/config";
 
+
 const TourDetails = () => {
     const { id } = useParams();
     const reviewMsgRef = useRef("");
     const [tourRating, setTourRating] = useState(null);
 
-    const { data } = useFetch(`${BASE_URL}/tours/${id}`);
+    const { data } = useFetch(`${BASE_URL}/ajencys/${id}`);
     const {
         photo,
         title,
@@ -43,7 +44,7 @@ const TourDetails = () => {
                         <div className='w-full mt-4 mb-10'>
                             {photo && photo.length > 0 && (
                                 <img
-                                    src={photo[0]}
+                                src={`http://localhost:4000${photo[0]}`}
                                     alt=''
                                     className='w-full rounded-md mb-10'
                                 />
@@ -98,9 +99,9 @@ const TourDetails = () => {
                                                         className='border-none'
                                                     >
                                                         <img
-                                                            src={photo}
+                                                            src={`http://localhost:4000${photo}`}
                                                             alt=''
-                                                            className='w-full rounded-md'
+                                                            className='w-full rounded-md h-36'
                                                         />
                                                     </Card>
                                                 ))}
