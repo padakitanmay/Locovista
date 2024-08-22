@@ -95,7 +95,7 @@ const Booking = ({ tour }) => {
                     className="btn w-full mt-4 bg-primary text-white py-2 rounded-lg"
                     onClick={handleClick}
                 >
-                    Add to Your Travelling List
+                    Book Now
                 </Button>
             </div>
         </div>

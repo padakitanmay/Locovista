@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../utills/config";
-import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Contribute = () => {
