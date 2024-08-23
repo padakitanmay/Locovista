@@ -6,15 +6,17 @@ import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth.js";
 import tourRoute from "./routes/tour.js";
 import userRoute from "./routes/users.js";
-import ajencyRoute from './routes/ajency.js';
-import path from 'path';
+import ajencyRoute from "./routes/ajency.js";
+import path from "path";
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
 const corsOptions = {
-    origin: true,
-    credentials: true,
+    origin: "*", // Allow requests from all origins
+    methods: "GET,PATCH,POST,DELETE,PUT", // Allow all HTTP methods
+    allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization", // Allow these headers
+    credentials: true, // Allow sending cookies across origins
 };
 
 // app.get("/",(res,req)=>{
@@ -36,14 +38,16 @@ const connect = async () => {
     }
 };
 
+app.use(cors(corsOptions));
 //middleware
 app.use(express.json());
-app.use(cors());
+
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/uploads', express.static(path.resolve('./uploads')));
+app.use("/uploads", express.static(path.resolve("./uploads")));
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/tours", tourRoute);
-app.use('/api/v1/ajencys', ajencyRoute);
+app.use("/api/v1/ajencys", ajencyRoute);
 app.use("/api/v1/users", userRoute);
 
 app.listen(port, () => {
