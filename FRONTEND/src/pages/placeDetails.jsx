@@ -30,7 +30,7 @@ const PlaceDetails = () => {
         <section>
             <Container>
                 <Row>
-                    <Col lg='8'>
+                    <Col>
                         <div className='mb-10'>
                             {photo && photo.length > 0 && (
                                 <img
@@ -146,9 +146,9 @@ const PlaceDetails = () => {
                             </ListGroup>
                         </div>
                     </Col>
-                    <Col lg='4'>
+                    {/* <Col lg='4'>
                         <Booking tour={t} avgRating={avgRating} />
-                    </Col>
+                    </Col> */}
                 </Row>
             </Container>
         </section>

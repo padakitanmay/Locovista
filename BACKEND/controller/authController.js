@@ -26,26 +26,22 @@ export const register = async (req, res) => {
     }
 };
 
-//user login
+// user login
 export const login = async (req, res) => {
     const email = req.body.email;
     try {
         const user = await User.findOne({ email });
-        //if user dosen't exit
+
         if (!user) {
             return res
                 .status(404)
                 .json({ success: false, message: "User not found!" });
         }
 
-        //check password if user exists
-
         const checkCorrectPassword = await bcrypt.compare(
             req.body.password,
             user.password
         );
-
-        //if wrong password
 
         if (!checkCorrectPassword) {
             return res
@@ -55,27 +51,31 @@ export const login = async (req, res) => {
 
         const { password, role, ...rest } = user._doc;
 
-        //create jwt token
+        // Create JWT token
         const token = jwt.sign(
             { id: user._id, role: user.role },
             process.env.JWT_SECERET_KEY,
             { expiresIn: "15d" }
         );
 
+        // ✅ Set token as cookie
         res.cookie("accessToken", token, {
             httpOnly: true,
-            expires: token.expiresIn,
-        })
-            .status(200)
-            .json({
-                token,
-                success: true,
-                message: "successfully login",
-                data: { ...rest },
-                role,
-            });
+            secure: false, // Set to true in production
+            sameSite: "Lax", // or 'None' if cross-domain with HTTPS
+            maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
+        });
+
+        return res.status(200).json({
+            token,
+            success: true,
+            message: "successfully login",
+            data: { ...rest },
+            role,
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json({ success: false, message: "Failed to login" });
     }
 };
+

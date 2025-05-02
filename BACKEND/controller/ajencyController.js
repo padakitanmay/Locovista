@@ -42,8 +42,15 @@ export const deleteAjency=async(req,res)=>{
 export const getSingleAjency=async(req,res)=>{
   const { id } = req.params;
   try {
-    const ajency = await Ajency.findById(id);
-    // console.log(Ajency);
+    const ajency = await Ajency.findById(id).populate({
+      path: "reviews",
+      populate: {
+        path: "user", // if you want user details inside review
+        select: "username email", // optional
+      },
+    });
+    console.log(ajency);
+
     if (!Ajency) {
       return res.status(404).json({ success: false, message: 'Ajency not found' });
     }

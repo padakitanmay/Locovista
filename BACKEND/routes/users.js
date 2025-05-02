@@ -17,4 +17,5 @@ router.get("/:id", verifyUser, getSingleUser);
 
 router.get("/", verifyUser, getAllUser);
 
+
 export default router;

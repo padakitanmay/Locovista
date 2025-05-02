@@ -15,7 +15,7 @@ const TourCard = ({ tour }) => {
             <Card className='border-none'>
                 <div className='touImg relative w-full h-44'>
                     <img
-                        src={`http://localhost:4000${photo[0]}`}
+                        src={`http://localhost:8080${photo[0]}`}
                         alt='tourImg'
                         className='w-full h-full object-cover rounded-t-lg'
                     />

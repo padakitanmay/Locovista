@@ -39,8 +39,28 @@ const tourSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        location: {
+            type: {
+              type: String,
+              enum: ["Point"],
+              default: "Point"
+            },
+            coordinates: {
+              type: [Number], // [longitude, latitude]
+              required: true
+            }
+          },
+          isHidden: {
+            type: Boolean,
+            default: false
+          },
+          unlockRadius: {
+            type: Number, // in meters
+            default: 100    
+          }
+          
     },
     { timestamps: true }
 );
-
+tourSchema.index({ location: "2dsphere" });
 export default mongoose.model("Tours", tourSchema);

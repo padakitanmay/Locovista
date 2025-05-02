@@ -158,7 +158,7 @@ export const getFeaturedTour = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed to fetch tours",
+      message: "Failed to fetch tours based on featured",
       error: err.message,
     });
   }
@@ -177,22 +177,63 @@ export const getTourCount = async (req, res) => {
 export const getCoordinates = async (req, res) => {
   const { address } = req.body;
   const apiKey = process.env.OPENCAGE_API_KEY;
-  return await fetch(
-    `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
-      address
-    )}&key=${apiKey}`
-  )
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
+
+  try {
+    const response = await fetch(
+      `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
+        address
+      )}&key=${apiKey}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Something went wrong!");
+    }
+
+    const data = await response.json();
+    
+    // Check if any results are returned
+    if (data.results.length === 0) {
+      throw new Error("No valid address");
+    }
+
+    // Extract the first result from OpenCage response
+    const result = data.results[0];
+    const confidence = result.confidence;
+    const category = result.components._type || result.components.category;
+
+    // Validate based on confidence score and category
+    if (confidence < 6 || !["attraction", "tourism", "place", "building", "city"].includes(category)) {
+      throw new Error("Suspicious or invalid location.");
+    }
+
+    // If everything is fine, return the coordinates
+    const { lat, lng } = result.geometry;
+    res.status(200).json({ lat: lat, lng: lng });
+
+  } catch (error) {
+    // Handle any errors (network, validation, etc.)
+    res.status(400).json({ message: error.message });
+  }
+};
+
+
+export const unlockTours = async (req, res) => {
+    const { lat, lng } = req.query;
+    const userLocation = [parseFloat(lng), parseFloat(lat)];
+    console.log(lat,lng);
+    const nearbyTours = await Tour.find({
+      isHidden: true,
+      location: {
+        $near: {
+          $geometry: {
+            type: "Point",
+            coordinates: userLocation
+          },
+          $maxDistance: 40000 // meters
+        }
       }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.results.length === 0) {
-        throw new Error("No valid address");
-      }
-      const { lat, lng } = data.results[0].geometry;
-      res.status(200).json({ lat: lat, lng: lng });
     });
+  //console.log(nearbyTours);
+  
+    res.json(nearbyTours);
 };

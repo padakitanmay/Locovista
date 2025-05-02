@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { BASE_URL } from "../utills/config";
 import { useNavigate } from "react-router-dom";
+import CommonSection from "../shared/commonSection";
 
 const Contribute = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     city: "",
@@ -12,6 +13,8 @@ const Contribute = () => {
     photo: null,
     desc: "",
     featured: false,
+    isHidden: false,
+    unlockRadius: 100,
   });
 
   const handleChange = (e) => {
@@ -25,7 +28,7 @@ const Contribute = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = new FormData();
-    
+
     for (const key in formData) {
       form.append(key, formData[key]);
     }
@@ -37,46 +40,43 @@ const Contribute = () => {
       });
       const data = await res.json();
       console.log(data);
-      navigate('/tours');
+      navigate("/tours");
     } catch (error) {
       console.log(error.message);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-4">
+      <CommonSection title={"Contribute a Tour"} />
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">
-            Contribute a Tour
-          </h2>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="rounded-md shadow-sm space-y-4">
-              {["title", "city", "address", "distance", "desc"].map((field) => (
-                <div key={field}>
-                  <label
-                    htmlFor={field}
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    {field.charAt(0).toUpperCase() + field.slice(1)}
-                  </label>
-                  <input
-                    id={field}
-                    name={field}
-                    type={field === "distance" ? "number" : "text"}
-                    value={formData[field]}
-                    onChange={handleChange}
-                    required
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                  />
-                </div>
-              ))}
+              {["title", "city", "address", "distance", "desc", "unlockRadius"].map(
+                (field) => (
+                  <div key={field}>
+                    <label
+                      htmlFor={field}
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      {field.charAt(0).toUpperCase() + field.slice(1)}
+                    </label>
+                    <input
+                      id={field}
+                      name={field}
+                      type={field === "distance" || field === "unlockRadius" ? "number" : "text"}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      required
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                    />
+                  </div>
+                )
+              )}
               <div>
-                <label
-                  htmlFor="photo"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="photo" className="block text-sm font-medium text-gray-700">
                   Photo
                 </label>
                 <input
@@ -87,7 +87,32 @@ const Contribute = () => {
                   className="mt-1 text-indigo-600 focus:ring-indigo-500 border-gray-300"
                 />
               </div>
-              
+              {/* <div className="flex items-center">
+                <input
+                  id="featured"
+                  name="featured"
+                  type="checkbox"
+                  checked={formData.featured}
+                  onChange={handleChange}
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <label htmlFor="featured" className="ml-2 block text-sm text-gray-900">
+                  Featured
+                </label>
+              </div> */}
+              <div className="flex items-center">
+                <input
+                  id="isHidden"
+                  name="isHidden"
+                  type="checkbox"
+                  checked={formData.isHidden}
+                  onChange={handleChange}
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <label htmlFor="isHidden" className="ml-2 block text-sm text-gray-900">
+                  Uncharted Location
+                </label>
+              </div>
             </div>
             <div>
               <button

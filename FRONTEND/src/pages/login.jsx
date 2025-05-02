@@ -37,6 +37,9 @@ const Login = () => {
             } else {
                 let user = result.data;
                 console.log(user);
+                // Store the user data and token in localStorage
+                localStorage.setItem("user", JSON.stringify(user));  // Store user data
+                localStorage.setItem("token", result.token);         // Store token
                 dispatch({ type: "LOGIN_SUCCESS", payload: user });
                 navigate("/home");
             }

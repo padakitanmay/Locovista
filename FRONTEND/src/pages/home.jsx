@@ -1,4 +1,8 @@
 import React from "react";
+import {useState,useEffect } from "react";  
+import { useNavigate } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+import { toast } from "react-toastify";
 import { Container, Row, Col } from "reactstrap";
 import galleryVideo from "../assets/images/galleryVideo.mp4";
 import Subtitle from "./../shared/subtitle";
@@ -9,6 +13,46 @@ import Reviews from "../components/reviews/reviews";
 import homeBg from "../assets/images/abc.jpg"
 
 const Home = () => {
+    const [location, setLocation] = useState({ lat: null, lng: null });
+    const [hiddenSpots, setHiddenSpots] = useState([]);
+    const navigate = useNavigate();
+
+    // Step 1: Request location once
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+
+                setLocation({ lat, lng });
+            },
+            (err) => {
+                console.error("Geolocation error:", err);
+                toast.error("Location access denied. Can't unlock hidden spots.");
+            }
+        );
+    }, []);
+    
+    // Step 2: Use Fetch hook only if location is available
+    const url = (location.lat && location.lng)
+        ? `http://localhost:8080/api/v1/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`
+        : null;
+    console.log(`url ${url}`);
+    const { data, loading, error } = useFetch(url);
+    
+    // Step 3: React to fetched data
+    useEffect(() => {
+        if (data && data.length > 0) {
+            setHiddenSpots(data);
+    
+            toast.success(`🎉 You've unlocked a hidden place: ${data[0].title}`, {
+                onClick: () => navigate("/tours?filter=hiddenNearby"),
+                autoClose: 5000,
+                style: { cursor: 'pointer' }, // optional: show pointer on hover
+            });
+        }
+    }, [data]);
+
     return (
         <>
             {/* Home Page Section */}
@@ -18,7 +62,7 @@ const Home = () => {
                 }}>
                 <div className="absolute inset-0 z-0"></div>
                 <div className="relative z-10 text-white text-center">
-                    <Subtitle subtitle="Speed before starting your experience" />
+                    <Subtitle subtitle="Plan Right Before Starting Your Experience" />
                     <h2 className="text-4xl font-medium py-6">
                         <strong>Locovista |</strong> Building Memories Across the World!
                     </h2>
