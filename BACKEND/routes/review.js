@@ -1,5 +1,8 @@
 import express from "express";
-import { createReview, getTourReviews } from "../controller/reviewController.js";
+import {
+    createReview,
+    getTourReviews,
+} from "../controller/reviewController.js";
 import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router();

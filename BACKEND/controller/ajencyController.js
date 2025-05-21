@@ -49,7 +49,6 @@ export const getSingleAjency=async(req,res)=>{
         select: "username email", // optional
       },
     });
-    console.log(ajency);
 
     if (!Ajency) {
       return res.status(404).json({ success: false, message: 'Ajency not found' });

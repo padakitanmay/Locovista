@@ -5,15 +5,15 @@ const Map = () => {
     const { lng, lat } = useParams();
     return (
         <div className="w-screen h-screen flex items-center justify-center overscroll-x-none">
-             <div className="w-[80vw] h-[75vh] rounded-2xl overflow-hidden shadow-xl border border-gray-300">
-            <iframe
-                src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d152!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1717675413021!5m2!1sen!2sin`}
-                className="w-full h-full overflow-hidden"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Maps"
-            />
+            <div className="w-[80vw] h-[75vh] rounded-2xl overflow-hidden shadow-xl border border-gray-300">
+                <iframe
+                    src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d152!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1717675413021!5m2!1sen!2sin`}
+                    className="w-full h-full overflow-hidden"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Maps"
+                />
             </div>
         </div>
     );

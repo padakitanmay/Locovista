@@ -12,18 +12,18 @@ const ServiceCard = ({ item }) => {
 
     return (
         <div
-            className="p-4 border-b border-black rounded-lg border-r border-black cursor-pointer"
+            className="p-4 border-b rounded-lg border-r border-black cursor-pointer"
             onClick={handleClick}
         >
             <div className="w-12 h-12 flex items-center justify-center rounded-full bg-secondary-color p-2 mb-4">
-                <img 
-                    src={imgUrl} 
-                    alt={title || 'Service Image'} 
-                    className="w-full h-full object-cover" 
+                <img
+                    src={imgUrl}
+                    alt={title || "Service Image"}
+                    className="w-full h-full object-cover"
                     onError={(e) => {
                         e.target.onerror = null; // Prevents infinite loop in case of broken URL
-                        e.target.src = '/path/to/default/image.jpg'; // Fallback image
-                    }} 
+                        e.target.src = "/path/to/default/image.jpg"; // Fallback image
+                    }}
                 />
             </div>
             <h5 className="text-lg font-medium">{title}</h5>

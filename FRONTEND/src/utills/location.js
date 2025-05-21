@@ -1,6 +1,5 @@
 import { BASE_URL } from "./config";
 
-
 export const getCoords = async (address) => {
     try {
         const response = await fetch(`${BASE_URL}/tours/getCoordinates`, {

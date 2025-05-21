@@ -83,29 +83,44 @@ const Register = () => {
                             </div>
                             <div className="w-1/2 p-8 bg-white rounded-lg shadow-lg">
                                 <div className="user mb-8">
-                                    <img src={userIcon} alt="" className="mx-auto w-16 h-16" />
+                                    <img
+                                        src={userIcon}
+                                        alt=""
+                                        className="mx-auto w-16 h-16"
+                                    />
                                 </div>
-                                <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
+                                <h2 className="text-2xl font-bold mb-4 text-center">
+                                    Register
+                                </h2>
                                 <Slider {...settings} className="mb-8">
                                     <div className="reviews py-4 px-3">
                                         <div className="flex items-center justify-center gap-4">
-                                            <h5 className="mb-0 mt-0 rounded-lg">User</h5>
+                                            <h5 className="mb-0 mt-0 rounded-lg">
+                                                User
+                                            </h5>
                                         </div>
                                     </div>
                                     <div className="reviews py-4 px-3">
                                         <div className="flex items-center justify-center gap-4">
                                             <div>
-                                                <h5 className="mb-0 mt-0 rounded-lg">Guide</h5>
+                                                <h5 className="mb-0 mt-0 rounded-lg">
+                                                    Guide
+                                                </h5>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="reviews py-4 px-3">
                                         <div className="flex items-center justify-center gap-4">
-                                            <h5 className="mb-0 mt-0 rounded-lg">Business</h5>
+                                            <h5 className="mb-0 mt-0 rounded-lg">
+                                                Business
+                                            </h5>
                                         </div>
                                     </div>
                                 </Slider>
-                                <form onSubmit={handleClick} className="flex flex-col items-center">
+                                <form
+                                    onSubmit={handleClick}
+                                    className="flex flex-col items-center"
+                                >
                                     <div className="mb-4 w-full">
                                         <input
                                             type="text"
@@ -145,7 +160,10 @@ const Register = () => {
                                 </form>
                                 <p className="mt-4">
                                     Already have an account?{" "}
-                                    <Link to="/login" className="text-blue-600 hover:underline">
+                                    <Link
+                                        to="/login"
+                                        className="text-blue-600 hover:underline"
+                                    >
                                         Login
                                     </Link>
                                 </p>

@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 import {
     createAjency,
     updateAjency,
@@ -8,25 +8,24 @@ import {
     getAjencyBySearch,
     getFeaturedAjency,
     getAjencyCount,
-} from '../controller/ajencyController.js';
-import { verifyAdmin } from '../utils/verifyToken.js';
-
+} from "../controller/ajencyController.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-router.post('/',verifyAdmin, createAjency);
+router.post("/", verifyAdmin, createAjency);
 
-router.put('/:id',verifyAdmin, updateAjency);
+router.put("/:id", verifyAdmin, updateAjency);
 
-router.delete('/:id',verifyAdmin, deleteAjency);
+router.delete("/:id", verifyAdmin, deleteAjency);
 
-router.get('/:id', getSingleAjency);
+router.get("/:id", getSingleAjency);
 
-router.get('/', getAllAjency);
+router.get("/", getAllAjency);
 
 // router.get('/search/getAjencyBySearch', getAjencyBySearch);
 
-router.get('/search/getFeaturedAjencys', getFeaturedAjency);
+router.get("/search/getFeaturedAjencys", getFeaturedAjency);
 
 // router.get('/search/getAjencyCount', getAjencyCount);
 

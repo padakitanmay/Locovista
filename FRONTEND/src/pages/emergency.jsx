@@ -18,33 +18,54 @@ const Emergency = () => {
         <section>
             <Container>
                 <Row>
-                    <Col lg='4' className='flex flex-col items-center border border-secondary-color shadow-lg rounded-lg p-6 mb-28'>
-                        <div className='flex flex-col items-center'>
-                            <img src={police} alt='Police' className='w-full h-20 object-cover mb-4' />
+                    <Col
+                        lg="4"
+                        className="flex flex-col items-center border border-secondary-color shadow-lg rounded-lg p-6 mb-28"
+                    >
+                        <div className="flex flex-col items-center">
+                            <img
+                                src={police}
+                                alt="Police"
+                                className="w-full h-20 object-cover mb-4"
+                            />
                             <Button
-                                className='bg-indigo-600 text-white w-full py-2 rounded-md hover:bg-indigo-700'
+                                className="bg-indigo-600 text-white w-full py-2 rounded-md hover:bg-indigo-700"
                                 onClick={handleClick}
                             >
                                 Police
                             </Button>
                         </div>
                     </Col>
-                    <Col lg='4' className='flex flex-col items-center border border-secondary-color shadow-lg rounded-lg p-6 mb-28'>
-                        <div className='flex flex-col items-center'>
-                            <img src={ambulance} alt='Ambulance' className='w-full h-20 object-cover mb-4' />
+                    <Col
+                        lg="4"
+                        className="flex flex-col items-center border border-secondary-color shadow-lg rounded-lg p-6 mb-28"
+                    >
+                        <div className="flex flex-col items-center">
+                            <img
+                                src={ambulance}
+                                alt="Ambulance"
+                                className="w-full h-20 object-cover mb-4"
+                            />
                             <Button
-                                className='bg-indigo-600 text-white w-full py-2 rounded-md hover:bg-indigo-700'
+                                className="bg-indigo-600 text-white w-full py-2 rounded-md hover:bg-indigo-700"
                                 onClick={handleClick}
                             >
                                 Ambulance
                             </Button>
                         </div>
                     </Col>
-                    <Col lg='4' className='flex flex-col items-center border border-secondary-color shadow-lg rounded-lg p-6 mb-28'>
-                        <div className='flex flex-col items-center'>
-                            <img src={fire} alt='Fire Extinguisher' className='w-full h-20 object-cover mb-4' />
+                    <Col
+                        lg="4"
+                        className="flex flex-col items-center border border-secondary-color shadow-lg rounded-lg p-6 mb-28"
+                    >
+                        <div className="flex flex-col items-center">
+                            <img
+                                src={fire}
+                                alt="Fire Extinguisher"
+                                className="w-full h-20 object-cover mb-4"
+                            />
                             <Button
-                                className='bg-indigo-600 text-white w-full py-2 rounded-md hover:bg-indigo-700'
+                                className="bg-indigo-600 text-white w-full py-2 rounded-md hover:bg-indigo-700"
                                 onClick={handleClick}
                             >
                                 Fire Extinguisher

@@ -14,7 +14,11 @@ const SearchBar = () => {
         const distance = distanceRef.current.value;
         const maxGroupSize = maxGroupSizeRef.current.value;
 
-        if (location.trim() === "" || distance.trim() === "" || maxGroupSize.trim() === "") {
+        if (
+            location.trim() === "" ||
+            distance.trim() === "" ||
+            maxGroupSize.trim() === ""
+        ) {
             return alert("All Fields are required!");
         }
 
@@ -33,55 +37,58 @@ const SearchBar = () => {
     };
 
     return (
-        <Col lg='12' className='mt-[28rem] p-2 rounded-3xl mx-6 flex items-center shadow-lg bg-teal-400 w-auto'>
-            <Form className='flex items-center gap-4'>
-                <FormGroup className='flex gap-3 border-r-2 border-gray-300 pr-3'>
-                    <span className='text-2xl text-red-400'>
-                        <i className='ri-map-pin-2-line'></i>
+        <Col
+            lg="12"
+            className="mt-[28rem] p-2 rounded-3xl mx-6 flex items-center shadow-lg bg-teal-400 w-auto"
+        >
+            <Form className="flex items-center gap-4">
+                <FormGroup className="flex gap-3 border-r-2 border-gray-300 pr-3">
+                    <span className="text-2xl text-red-400">
+                        <i className="ri-map-pin-2-line"></i>
                     </span>
                     <div>
-                        <h6 className='mb-0'>Location</h6>
+                        <h6 className="mb-0">Location</h6>
                         <input
-                            type='text'
-                            placeholder='Where are you going?'
+                            type="text"
+                            placeholder="Where are you going?"
                             ref={locationRef}
-                            className='border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none'
+                            className="border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none"
                         />
                     </div>
                 </FormGroup>
-                <FormGroup className='flex gap-3 border-r-2 border-gray-300 pr-3'>
-                    <span className='text-2xl text-red-400'>
-                        <i className='ri-pin-distance-line'></i>
+                <FormGroup className="flex gap-3 border-r-2 border-gray-300 pr-3">
+                    <span className="text-2xl text-red-400">
+                        <i className="ri-pin-distance-line"></i>
                     </span>
                     <div>
-                        <h6 className='mb-0'>Distance</h6>
+                        <h6 className="mb-0">Distance</h6>
                         <input
-                            type='number'
-                            placeholder='Distance km'
+                            type="number"
+                            placeholder="Distance km"
                             ref={distanceRef}
-                            className='border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none'
+                            className="border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none"
                         />
                     </div>
                 </FormGroup>
-                <FormGroup className='flex gap-3 pr-3'>
-                    <span className='text-2xl text-red-400'>
-                        <i className='ri-group-line'></i>
+                <FormGroup className="flex gap-3 pr-3">
+                    <span className="text-2xl text-red-400">
+                        <i className="ri-group-line"></i>
                     </span>
                     <div>
-                        <h6 className='mb-0'>Max People:</h6>
+                        <h6 className="mb-0">Max People:</h6>
                         <input
-                            type='number'
-                            placeholder='0'
+                            type="number"
+                            placeholder="0"
                             ref={maxGroupSizeRef}
-                            className='border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none'
+                            className="border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none"
                         />
                     </div>
                 </FormGroup>
                 <span
-                    className='text-xl p-2 bg-red-400 text-white rounded-r-2xl cursor-pointer flex items-center justify-center'
+                    className="text-xl p-2 bg-red-400 text-white rounded-r-2xl cursor-pointer flex items-center justify-center"
                     onClick={searchHandler}
                 >
-                    <i className='ri-search-line'></i>
+                    <i className="ri-search-line"></i>
                 </span>
             </Form>
         </Col>
