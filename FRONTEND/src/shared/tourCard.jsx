@@ -33,7 +33,7 @@ const TourCard = ({ tour }) => {
                         </span>
                         <span className='tourRating flex items-center gap-1 text-sm text-text'>
                             <i className='ri-star-line'></i>
-                            {avgRating === 0 ? null : avgRating}
+                            {avgRating === 0 ? "Not Rated" : avgRating}
                             {totalRating === 0 ? (
                                 "Not Rated"
                             ) : (
