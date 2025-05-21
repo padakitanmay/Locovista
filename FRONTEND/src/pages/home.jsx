@@ -1,5 +1,5 @@
 import React from "react";
-import {useState,useEffect } from "react";  
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { toast } from "react-toastify";
@@ -10,7 +10,7 @@ import SearchBar from "../shared/searchbar";
 // import ServicesList from "../services/servicesList";
 import FeaturedTourList from "../featuredTour/featuredTourList";
 import Reviews from "../components/reviews/reviews";
-import homeBg from "../assets/images/abc.jpg"
+import homeBg from "../assets/images/abc.jpg";
 
 const Home = () => {
     const [location, setLocation] = useState({ lat: null, lng: null });
@@ -24,47 +24,57 @@ const Home = () => {
                 const lat = position.coords.latitude;
                 const lng = position.coords.longitude;
 
+                console.log("Lat of my loc: " + lat + "Long of my loc: " + lng);
                 setLocation({ lat, lng });
             },
             (err) => {
                 console.error("Geolocation error:", err);
-                toast.error("Location access denied. Can't unlock hidden spots.");
+                toast.error(
+                    "Location access denied. Can't unlock hidden spots."
+                );
             }
         );
     }, []);
-    
+
     // Step 2: Use Fetch hook only if location is available
-    const url = (location.lat && location.lng)
-        ? `http://localhost:8080/api/v1/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`
-        : null;
+    const url =
+        location.lat && location.lng
+            ? `http://localhost:8080/api/v1/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`
+            : null;
     console.log(`url ${url}`);
     const { data, loading, error } = useFetch(url);
-    
+
     // Step 3: React to fetched data
     useEffect(() => {
         if (data && data.length > 0) {
             setHiddenSpots(data);
-    
-            toast.success(`🎉 You've unlocked a hidden place: ${data[0].title}`, {
-                onClick: () => navigate("/tours?filter=hiddenNearby"),
-                autoClose: 5000,
-                style: { cursor: 'pointer' }, // optional: show pointer on hover
-            });
+
+            toast.success(
+                `🎉 You've unlocked a hidden place: ${data[0].title}`,
+                {
+                    onClick: () => navigate("/tours?filter=hiddenNearby"),
+                    autoClose: 5000,
+                    style: { cursor: "pointer" }, // optional: show pointer on hover
+                }
+            );
         }
     }, [data]);
 
     return (
         <>
             {/* Home Page Section */}
-            <section className="relative h-auto w-full py-10 px-8 bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-center"
-                 style={{ 
-                    backgroundImage: `linear-gradient(rgba(0, 0, 1, 0.42), rgba(0, 0, 1, 0.549)), url(${homeBg})`
-                }}>
+            <section
+                className="relative h-auto w-full py-10 px-8 bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-center"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 1, 0.42), rgba(0, 0, 1, 0.549)), url(${homeBg})`,
+                }}
+            >
                 <div className="absolute inset-0 z-0"></div>
                 <div className="relative z-10 text-white text-center">
                     <Subtitle subtitle="Plan Right Before Starting Your Experience" />
                     <h2 className="text-4xl font-medium py-6">
-                        <strong>Locovista |</strong> Building Memories Across the World!
+                        <strong>Locovista |</strong> Building Memories Across
+                        the World!
                     </h2>
                     <div className="w-auto h-auto">
                         <SearchBar />
@@ -80,31 +90,49 @@ const Home = () => {
                             <div className="mb-8">
                                 <Subtitle subtitle="Experience" />
                                 <h2 className="text-3xl font-medium text-primary mb-4">
-                                    With all your experience <br /> we will serve you
+                                    With all your experience <br /> we will
+                                    serve you
                                 </h2>
                                 <p className="text-lg text-gray-700">
                                     Lorem ipsum dolor sit, amet <br />
-                                    consectetur adipisicing elit. Inventore dicta consectetur natus.
+                                    consectetur adipisicing elit. Inventore
+                                    dicta consectetur natus.
                                 </p>
                             </div>
                             <div className="flex justify-around items-center mt-10">
                                 <div className="text-center">
-                                    <span className="block w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">999+</span>
-                                    <h6 className="text-sm text-gray-700">Successful Trips</h6>
+                                    <span className="w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">
+                                        999+
+                                    </span>
+                                    <h6 className="text-sm text-gray-700">
+                                        Successful Trips
+                                    </h6>
                                 </div>
                                 <div className="text-center">
-                                    <span className="block w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">199+</span>
-                                    <h6 className="text-sm text-gray-700">Regular Clients</h6>
+                                    <span className="w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">
+                                        199+
+                                    </span>
+                                    <h6 className="text-sm text-gray-700">
+                                        Regular Clients
+                                    </h6>
                                 </div>
                                 <div className="text-center">
-                                    <span className="block w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">3+</span>
-                                    <h6 className="text-sm text-gray-700">Years of Experience</h6>
+                                    <span className="w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">
+                                        3+
+                                    </span>
+                                    <h6 className="text-sm text-gray-700">
+                                        Years of Experience
+                                    </h6>
                                 </div>
                             </div>
                         </Col>
                         <Col lg="6">
                             <div className="relative">
-                                <video src={galleryVideo} className="w-full rounded-2xl shadow-lg" controls />
+                                <video
+                                    src={galleryVideo}
+                                    className="w-full rounded-2xl shadow-lg"
+                                    controls
+                                />
                             </div>
                         </Col>
                     </Row>
