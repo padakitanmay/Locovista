@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TodoProvider } from "../contexts/TodoContext";
-import  TodoForm  from "./TodoForm";
-import TodoItem from "./TodoItem"
+import TodoForm from "./TodoForm";
+import TodoItem from "./TodoItem";
 // import "./App.css";
 
 function Contri() {
@@ -46,16 +46,16 @@ function Contri() {
         <TodoProvider
             value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}
         >
-            <div className='bg-[#172842] min-h-screen py-8'>
-                <div className='w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white'>
-                    <div className='mb-4'>
+            <div className="bg-[#172842] min-h-screen py-8">
+                <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
+                    <div className="mb-4">
                         <TodoForm />
                     </div>
-                    <div className='flex flex-wrap gap-y-3'>
-                        {todos.map((todo)=>(
-                          <div key={todo.id} className="w-full">
-                            <TodoItem todo = {todo}/>
-                          </div>
+                    <div className="flex flex-wrap gap-y-3">
+                        {todos.map((todo) => (
+                            <div key={todo.id} className="w-full">
+                                <TodoItem todo={todo} />
+                            </div>
                         ))}
                     </div>
                 </div>

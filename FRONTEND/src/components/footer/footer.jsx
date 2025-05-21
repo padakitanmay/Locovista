@@ -22,7 +22,11 @@ const Footer = () => {
                 <Row>
                     <Col lg="3">
                         <div className="logo1 mb-4">
-                            <img src={logo1} alt="" className="w-3/4 h-3/4 ml-6" />
+                            <img
+                                src={logo1}
+                                alt=""
+                                className="w-3/4 h-3/4 ml-6"
+                            />
                             <p className="text-gray-600">
                                 Hope you like our website and it helped you in
                                 planning your trip successfully.
@@ -52,7 +56,9 @@ const Footer = () => {
                         </div>
                     </Col>
                     <Col lg="3">
-                        <h5 className="footerTitle text-gray-800 mb-4">Discover</h5>
+                        <h5 className="footerTitle text-gray-800 mb-4">
+                            Discover
+                        </h5>
                         <ListGroup className="footer_quickLinks">
                             {quick_links.map((item, index) => (
                                 <ListGroupItem
@@ -70,7 +76,9 @@ const Footer = () => {
                         </ListGroup>
                     </Col>
                     <Col lg="3">
-                        <h5 className="footerTitle text-gray-800 mb-4">Quick Links</h5>
+                        <h5 className="footerTitle text-gray-800 mb-4">
+                            Quick Links
+                        </h5>
                         <ListGroup className="footer_quickLinks">
                             {quick_links2.map((item, index) => (
                                 <ListGroupItem
@@ -88,7 +96,9 @@ const Footer = () => {
                         </ListGroup>
                     </Col>
                     <Col lg="3">
-                        <h5 className="footerTitle text-gray-800 mb-4">Contact</h5>
+                        <h5 className="footerTitle text-gray-800 mb-4">
+                            Contact
+                        </h5>
                         <ListGroup className="footer_quickLinks2">
                             <ListGroupItem className="p-0 border-0 flex items-center gap-3">
                                 <h6 className="mb-0 flex items-center gap-2 text-lg">
@@ -97,7 +107,9 @@ const Footer = () => {
                                     </span>
                                     Address:
                                 </h6>
-                                <p className="mb-0 text-gray-600">Maharashtra, India</p>
+                                <p className="mb-0 text-gray-600">
+                                    Maharashtra, India
+                                </p>
                             </ListGroupItem>
                             <ListGroupItem className="p-0 border-0 flex items-center gap-3">
                                 <h6 className="mb-0 flex items-center gap-2 text-lg">
@@ -106,7 +118,9 @@ const Footer = () => {
                                     </span>
                                     Email:
                                 </h6>
-                                <p className="mb-0 text-gray-600">locovista@gmail.com</p>
+                                <p className="mb-0 text-gray-600">
+                                    locovista@gmail.com
+                                </p>
                             </ListGroupItem>
                             <ListGroupItem className="p-0 border-0 flex items-center gap-3">
                                 <h6 className="mb-0 flex items-center gap-2 text-lg">
@@ -115,7 +129,9 @@ const Footer = () => {
                                     </span>
                                     Phone:
                                 </h6>
-                                <p className="mb-0 text-gray-600">+91 7709029352</p>
+                                <p className="mb-0 text-gray-600">
+                                    +91 7709029352
+                                </p>
                             </ListGroupItem>
                         </ListGroup>
                     </Col>

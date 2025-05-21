@@ -14,27 +14,27 @@ import Urgent from "../pages/urgent";
 import Contribute from "../pages/contribute";
 import Contri from "../pages/contri";
 import Customize from "../pages/customize";
-import Map from "../pages/Map.jsx"
+import Map from "../pages/Map.jsx";
 
 const Router = () => {
     return (
         <Routes>
-            <Route path='/' element={<Navigate to='/home' />} />
-            <Route path='/home' element={<Home />} />
-            <Route path='/customize' element={<Customize />} />
-            <Route path='/urgent' element={<Urgent />} />
-            <Route path='/contri' element={<Contri />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/emergency' element={<Emergency />} />
-            <Route path='/contribute' element={<Contribute />} />
-            <Route path='/tours' element={<Tours />} />
-            <Route path='/tours/:id' element={<PlaceDetails />} />
-            <Route path='/ajencys/:id' element={<TourDetails />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/tours/search' element={<SerchResultList />} />
-            <Route path='/tours/map/:lat/:lng' element={<Map/>}/>
-            <Route path='/thank-you' element={<Thankyou />} />
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/customize" element={<Customize />} />
+            <Route path="/urgent" element={<Urgent />} />
+            <Route path="/contri" element={<Contri />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/emergency" element={<Emergency />} />
+            <Route path="/contribute" element={<Contribute />} />
+            <Route path="/tours" element={<Tours />} />
+            <Route path="/tours/:id" element={<PlaceDetails />} />
+            <Route path="/ajencys/:id" element={<TourDetails />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/tours/search" element={<SerchResultList />} />
+            <Route path="/tours/map/:lat/:lng" element={<Map />} />
+            <Route path="/thank-you" element={<Thankyou />} />
         </Routes>
     );
 };

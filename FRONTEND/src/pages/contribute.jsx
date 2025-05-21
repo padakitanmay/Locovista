@@ -124,7 +124,7 @@ const Contribute = () => {
                                     htmlFor="isHidden"
                                     className="ml-2 block text-sm text-gray-900"
                                 >
-                                    Hidden Location ? 
+                                    Hidden Location ?
                                 </label>
                             </div>
                         </div>

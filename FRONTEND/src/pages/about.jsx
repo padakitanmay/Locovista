@@ -27,7 +27,9 @@ const About = () => {
                                     <span className="block text-3xl font-bold">
                                         999+
                                     </span>
-                                    <h6 className="text-lg">Successful Trips</h6>
+                                    <h6 className="text-lg">
+                                        Successful Trips
+                                    </h6>
                                 </div>
                                 <div className="counterBox text-center">
                                     <span className="block text-3xl font-bold">

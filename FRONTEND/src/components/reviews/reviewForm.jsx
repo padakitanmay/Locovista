@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 
 const ReviewForm = ({ onSubmit }) => {
     const [rating, setRating] = useState(null);
@@ -22,7 +22,9 @@ const ReviewForm = ({ onSubmit }) => {
                     <span
                         key={star}
                         onClick={() => setRating(star)}
-                        className={`flex items-center cursor-pointer ${rating >= star ? 'text-yellow-500' : 'text-gray-400'}`}
+                        className={`flex items-center cursor-pointer ${
+                            rating >= star ? "text-yellow-500" : "text-gray-400"
+                        }`}
                     >
                         {star} <i className="ri-star-fill"></i>
                     </span>
@@ -36,7 +38,9 @@ const ReviewForm = ({ onSubmit }) => {
                     required
                     className="w-full p-2 text-lg border-none focus:outline-none"
                 />
-                <button className="btn bg-primary text-white ml-2">Submit</button>
+                <button className="btn bg-primary text-white ml-2">
+                    Submit
+                </button>
             </div>
         </form>
     );

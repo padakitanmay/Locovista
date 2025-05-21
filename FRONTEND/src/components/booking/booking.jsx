@@ -20,7 +20,8 @@ const Booking = ({ tour }) => {
     };
 
     const serviceFee = 50;
-    const totalAmount = Number(price) * Number(credentials.guestSize) + Number(serviceFee);
+    const totalAmount =
+        Number(price) * Number(credentials.guestSize) + Number(serviceFee);
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -84,13 +85,17 @@ const Booking = ({ tour }) => {
                 </div>
                 <div className="border-0 p-0">
                     <h5 className="text-gray-700 text-base">Service Charge</h5>
-                    <span className="text-gray-700 text-base">₹{serviceFee}</span>
+                    <span className="text-gray-700 text-base">
+                        ₹{serviceFee}
+                    </span>
                 </div>
                 <div className="total border-0 p-0">
                     <h5 className="text-gray-800 font-bold text-lg">Total</h5>
-                    <span className="text-gray-800 font-bold text-lg">₹{totalAmount}</span>
+                    <span className="text-gray-800 font-bold text-lg">
+                        ₹{totalAmount}
+                    </span>
                 </div>
-               
+
                 <Button
                     className="btn w-full mt-4 bg-primary text-white py-2 rounded-lg"
                     onClick={handleClick}

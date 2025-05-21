@@ -24,7 +24,6 @@ const Home = () => {
                 const lat = position.coords.latitude;
                 const lng = position.coords.longitude;
 
-                console.log("Lat of my loc: " + lat + "Long of my loc: " + lng);
                 setLocation({ lat, lng });
             },
             (err) => {

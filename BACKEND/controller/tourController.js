@@ -2,9 +2,8 @@ import Tour from "../models/Tour.js";
 
 export const createTour = async (req, res) => {
     try {
-        const { title, city, address, distance, desc, photo, isHidden } = new Tour(
-            req.body
-        );
+        const { title, city, address, distance, desc, photo, isHidden } =
+            new Tour(req.body);
         // const savedTour = await newTour.save();
 
         const { lat, lng } = await getCoordinatesFromAddress(address);

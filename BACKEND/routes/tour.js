@@ -1,22 +1,22 @@
 import express from "express";
 import {
-  createTour,
-  updateTour,
-  deleteTour,
-  getSingleTour,
-  getAllTour,
-  getTourBySearch,
-  getFeaturedTour,
-  getTourCount,
-  getCoordinates,
-  unlockTours
+    createTour,
+    updateTour,
+    deleteTour,
+    getSingleTour,
+    getAllTour,
+    getTourBySearch,
+    getFeaturedTour,
+    getTourCount,
+    getCoordinates,
+    unlockTours,
 } from "../controller/tourController.js";
 import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 import upload from "../middleware/multer.js";
 
 const router = express.Router();
 
-router.post("/createTour",upload.single("photo"), createTour);
+router.post("/createTour", upload.single("photo"), createTour);
 
 router.post("/getCoordinates", getCoordinates);
 router.get("/search/getTourBySearch", getTourBySearch);

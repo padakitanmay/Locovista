@@ -17,7 +17,9 @@ const TourDetails = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const res = await fetch(`${BASE_URL}/reviews/tour/${id}?type=ajency`);
+                const res = await fetch(
+                    `${BASE_URL}/reviews/tour/${id}?type=ajency`
+                );
                 if (!res.ok) throw new Error("Failed to fetch reviews");
                 const data = await res.json();
                 setReviews(data);
@@ -53,7 +55,7 @@ const TourDetails = () => {
                     review: reviewText,
                     rating: rating,
                     userId: user?._id,
-                    type: "ajency"
+                    type: "ajency",
                 }),
             });
 
@@ -64,7 +66,9 @@ const TourDetails = () => {
             alert("Review submitted successfully!");
 
             // Fetch reviews again after new review
-            const updated = await fetch(`${BASE_URL}/reviews/tour/${id}?type=ajency`);
+            const updated = await fetch(
+                `${BASE_URL}/reviews/tour/${id}?type=ajency`
+            );
             const updatedReviews = await updated.json();
             setReviews(updatedReviews);
         } catch (err) {
@@ -74,16 +78,8 @@ const TourDetails = () => {
 
     if (!tour) return <p>Loading...</p>;
 
-    const {
-        title,
-        photo,
-        desc,
-        price,
-        city,
-        distance,
-        maxGroupSize,
-        address
-    } = tour || {};
+    const { title, photo, desc, price, city, distance, maxGroupSize, address } =
+        tour || {};
 
     const { totalRating, avgRating } = calculateAvgRating(reviews);
 
@@ -105,7 +101,8 @@ const TourDetails = () => {
 
                         <div className="flex items-center gap-5 mb-3">
                             <span className="text-gray-700">
-                                <i className="ri-star-line text-yellow-500"></i> {avgRating || "Not Rated"} ({reviews.length})
+                                <i className="ri-star-line text-yellow-500"></i>{" "}
+                                {avgRating || "Not Rated"} ({reviews.length})
                             </span>
                             <span className="text-gray-700">
                                 <i className="ri-map-pin-line"></i> {address}
@@ -117,18 +114,23 @@ const TourDetails = () => {
                                 <i className="ri-map-pin-line"></i> {city}
                             </span>
                             <span className="text-gray-700">
-                                <i className="ri-pin-distance-line"></i> {distance} km
+                                <i className="ri-pin-distance-line"></i>{" "}
+                                {distance} km
                             </span>
                             <span className="text-gray-700">
-                                <i className="ri-money-dollar-box-line"></i> ₹{price} /person
+                                <i className="ri-money-dollar-box-line"></i> ₹
+                                {price} /person
                             </span>
                             <span className="text-gray-700">
-                                <i className="ri-group-line"></i> {maxGroupSize} people
+                                <i className="ri-group-line"></i> {maxGroupSize}{" "}
+                                people
                             </span>
                         </div>
 
                         <div className="mb-8">
-                            <h5 className="text-xl font-semibold">Description</h5>
+                            <h5 className="text-xl font-semibold">
+                                Description
+                            </h5>
                             <p className="text-gray-700">{desc}</p>
                         </div>
 
