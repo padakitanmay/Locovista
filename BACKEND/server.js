@@ -22,7 +22,7 @@ app.use(express.json());
 
 const port = process.env.PORT || 8080;
 const corsOptions = {
-    origin: "http://localhost:3000", // ✅ Explicitly specify your frontend origin
+    origin: ["http://localhost:3000", "https://locovista.vercel.app"], // Added vercel frontend too
     methods: "GET,PATCH,POST,DELETE,PUT",
     allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization",
     credentials: true, // ✅ Allow cookies & credentials
