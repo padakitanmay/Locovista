@@ -41,24 +41,23 @@ const tourSchema = new mongoose.Schema(
         },
         location: {
             type: {
-              type: String,
-              enum: ["Point"],
-              default: "Point"
+                type: String,
+                enum: ["Point"],
+                default: "Point",
             },
             coordinates: {
-              type: [Number], // [longitude, latitude]
-              required: true
-            }
-          },
-          isHidden: {
+                type: [Number], // [longitude, latitude]
+                required: true,
+            },
+        },
+        isHidden: {
             type: Boolean,
-            default: false
-          },
-          unlockRadius: {
+            default: false,
+        },
+        unlockRadius: {
             type: Number, // in meters
-            default: 100    
-          }
-          
+            default: 100,
+        },
     },
     { timestamps: true }
 );
