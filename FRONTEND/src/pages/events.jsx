@@ -4,12 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CommonSection from "../shared/commonSection";
 
 const Events = () => {
-    const fields = [
-        "Title",
-        "City",
-        "Date",
-        "Description",
-    ];
+    const fields = ["Title", "City", "Date", "Description"];
 
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -37,18 +32,18 @@ const Events = () => {
         e.preventDefault();
         const form = new FormData();
 
+        console.log(formData);
+        
         for (const key in formData) {
             form.append(key, formData[key]);
         }
 
         try {
-            const res = await fetch(`${BASE_URL}/tours/createTour`, {
+            const res = await fetch(`${BASE_URL}/events`, {
                 method: "POST",
                 body: form,
             });
             const data = await res.json();
-            console.log(data);
-            navigate("/tours");
         } catch (error) {
             console.log(error.message);
         }
@@ -104,22 +99,6 @@ const Events = () => {
                                     onChange={handleChange}
                                     className="mt-1 text-indigo-600 focus:ring-indigo-500 border-gray-300"
                                 />
-                            </div>
-                            <div className="flex items-center">
-                                <input
-                                    id="isHidden"
-                                    name="isHidden"
-                                    type="checkbox"
-                                    checked={formData.isHidden}
-                                    onChange={handleChange}
-                                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                />
-                                <label
-                                    htmlFor="isHidden"
-                                    className="ml-2 block text-sm text-gray-900"
-                                >
-                                    Hidden Location ?
-                                </label>
                             </div>
                         </div>
                         <div>

@@ -18,7 +18,6 @@ const TourCard = ({ tour }) => {
                 body: JSON.stringify({ address }),
             });
             const data = await response.json();
-            console.log(data);
             setCoords({ lat: data.lat, lng: data.lng });
         } catch (error) {
             console.log(error.message);

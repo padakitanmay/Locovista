@@ -43,6 +43,7 @@ const Contribute = () => {
         e.preventDefault();
         const form = new FormData();
 
+        console.log(formData);
         for (const key in formData) {
             form.append(key, formData[key]);
         }
@@ -53,7 +54,6 @@ const Contribute = () => {
                 body: form,
             });
             const data = await res.json();
-            console.log(data);
             navigate("/tours");
         } catch (error) {
             console.log(error.message);
