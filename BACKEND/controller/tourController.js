@@ -240,7 +240,6 @@ async function getCoordinatesFromAddress(address) {
         const confidence = result.confidence;
         const category = result.components._type || result.components.category;
 
-
         // If everything is fine, return the coordinates
         const { lat, lng } = result.geometry;
         return { lat, lng };
