@@ -40,8 +40,8 @@ const Home = () => {
         location.lat && location.lng
             ? `http://localhost:8080/api/v1/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`
             : null;
-    console.log(`url ${url}`);
     const { data, loading, error } = useFetch(url);
+
 
     // Step 3: React to fetched data
     useEffect(() => {

@@ -6,8 +6,6 @@ import calculateAvgRating from "../utills/avgRating";
 const TourCard = ({ tour }) => {
     const { _id, title, city, photo, price, featured, reviews } = tour;
 
-    console.log(photo);
-
     const { totalRating, avgRating } = calculateAvgRating(reviews);
 
     return (
