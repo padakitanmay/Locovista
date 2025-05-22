@@ -23,7 +23,6 @@ const Home = () => {
             (position) => {
                 const lat = position.coords.latitude;
                 const lng = position.coords.longitude;
-
                 setLocation({ lat, lng });
             },
             (err) => {
@@ -41,7 +40,6 @@ const Home = () => {
             ? `http://localhost:8080/api/v1/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`
             : null;
     const { data, loading, error } = useFetch(url);
-
 
     // Step 3: React to fetched data
     useEffect(() => {

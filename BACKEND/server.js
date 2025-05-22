@@ -7,6 +7,7 @@ import authRoute from "./routes/auth.js";
 import tourRoute from "./routes/tour.js";
 import userRoute from "./routes/users.js";
 import ajencyRoute from "./routes/ajency.js";
+import eventRoute from "./routes/events.js"
 import { unlockTours } from "./controller/tourController.js";
 import reviewRoutes from "./routes/review.js";
 import path from "path";
@@ -59,6 +60,7 @@ app.use("/api/v1/tours", tourRoute);
 app.use("/api/v1/ajencys", ajencyRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/reviews", reviewRoutes);
+app.use("/api/v1/events", eventRoute);
 
 app.listen(port, () => {
     connect();
