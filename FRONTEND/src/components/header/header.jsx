@@ -8,6 +8,7 @@ const nav_links = [
     { path: "/home", display: "Home" },
     { path: "/tours", display: "Tours" },
     { path: "/contribute", display: "Contribute" },
+    { path: "/events", display: "Events"},
     { path: "/about", display: "About" },
 ];
 

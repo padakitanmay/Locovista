@@ -15,6 +15,7 @@ import Contribute from "../pages/contribute";
 import Contri from "../pages/contri";
 import Customize from "../pages/customize";
 import Map from "../pages/Map.jsx";
+import Events from "../pages/events.jsx";
 
 const Router = () => {
     return (
@@ -27,6 +28,7 @@ const Router = () => {
             <Route path="/about" element={<About />} />
             <Route path="/emergency" element={<Emergency />} />
             <Route path="/contribute" element={<Contribute />} />
+            <Route path="/events" element={<Events />} />
             <Route path="/tours" element={<Tours />} />
             <Route path="/tours/:id" element={<PlaceDetails />} />
             <Route path="/ajencys/:id" element={<TourDetails />} />
