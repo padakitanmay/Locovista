@@ -197,7 +197,7 @@ export const getCoordinates = async (req, res) => {
 export const unlockTours = async (req, res) => {
     const { lat, lng } = req.query;
     const userLocation = [parseFloat(lng), parseFloat(lat)];
-
+    console.log(lat, lng);
     const nearbyTours = await Tour.find({
         // isHidden: true,
         location: {
@@ -206,10 +206,11 @@ export const unlockTours = async (req, res) => {
                     type: "Point",
                     coordinates: userLocation,
                 },
-                $maxDistance: 100000, // meters
+                $maxDistance: 40000, // meters
             },
         },
     });
+    //console.log(nearbyTours);
 
     res.json(nearbyTours);
 };
@@ -238,6 +239,16 @@ async function getCoordinatesFromAddress(address) {
         const result = data.results[0];
         const confidence = result.confidence;
         const category = result.components._type || result.components.category;
+
+        // Validate based on confidence score and category
+        // if (
+        //     confidence < 6 ||
+        //     !["attraction", "tourism", "place", "building", "city"].includes(
+        //         category
+        //     )
+        // ) {
+        //     throw new Error("Suspicious or invalid location.");
+        // }
 
         // If everything is fine, return the coordinates
         const { lat, lng } = result.geometry;

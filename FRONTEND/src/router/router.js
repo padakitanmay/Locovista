@@ -16,6 +16,8 @@ import Contri from "../pages/contri";
 import Customize from "../pages/customize";
 import Map from "../pages/Map.jsx";
 import Events from "../pages/events.jsx";
+import AdminLogin from "../pages/AdminLogin.jsx";
+import AdminDashboard from "../pages/AdminDashboard.jsx";
 
 const Router = () => {
     return (
@@ -33,6 +35,8 @@ const Router = () => {
             <Route path="/tours/:id" element={<PlaceDetails />} />
             <Route path="/ajencys/:id" element={<TourDetails />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/register" element={<Register />} />
             <Route path="/tours/search" element={<SerchResultList />} />
             <Route path="/tours/map/:lat/:lng" element={<Map />} />
