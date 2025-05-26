@@ -23,7 +23,7 @@ const Home = () => {
             (position) => {
                 const lat = position.coords.latitude;
                 const lng = position.coords.longitude;
-
+                console.log("Lat" + lat + "Lng: " + lng)
                 setLocation({ lat, lng });
             },
             (err) => {
