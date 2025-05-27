@@ -11,6 +11,7 @@ import SearchBar from "../shared/searchbar";
 import FeaturedTourList from "../featuredTour/featuredTourList";
 import Reviews from "../components/reviews/reviews";
 import homeBg from "../assets/images/abc.jpg";
+import { BASE_URL } from "../utills/config";
 
 const Home = () => {
     const [location, setLocation] = useState({ lat: null, lng: null });
@@ -38,7 +39,7 @@ const Home = () => {
     // Step 2: Use Fetch hook only if location is available
     const url =
         location.lat && location.lng
-            ? `http://localhost:8080/api/v1/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`
+            ? `http://${BASE_URL}/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`
             : null;
     const { data, loading, error } = useFetch(url);
 

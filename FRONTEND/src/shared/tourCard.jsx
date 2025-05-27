@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import calculateAvgRating from "../utills/avgRating";
+import { PHOTO_URL } from "../utills/config";
 
 const TourCard = ({ tour }) => {
     const { _id, title, city, photo, price, featured, reviews } = tour;
@@ -13,7 +14,7 @@ const TourCard = ({ tour }) => {
             <Card className="border-none">
                 <div className="touImg relative w-full h-44">
                     <img
-                        src={`http://localhost:8080${photo[0]}`}
+                        src={`${PHOTO_URL}${photo[0]}`}
                         alt="tourImg"
                         className="w-full h-full object-cover rounded-t-lg"
                     />
