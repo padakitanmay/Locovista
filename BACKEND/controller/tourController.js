@@ -2,8 +2,7 @@ import Tour from "../models/Tour.js";
 
 export const createTour = async (req, res) => {
     try {
-        const { Title, City, Address, Distance, Description, isHidden } =
-            new Tour(req.body);
+        const { Title, City, Address, Distance, Description, isHidden } = req.body;
 
         const { lat, lng } = await getCoordinatesFromAddress(Address);
 
@@ -206,7 +205,7 @@ export const unlockTours = async (req, res) => {
                     type: "Point",
                     coordinates: userLocation,
                 },
-                $maxDistance: 40000, // meters
+                $maxDistance: 400000, // meters
             },
         },
     });
