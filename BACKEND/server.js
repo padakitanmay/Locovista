@@ -11,6 +11,7 @@ import eventRoute from "./routes/events.js";
 import { unlockTours } from "./controller/tourController.js";
 import reviewRoutes from "./routes/review.js";
 import path from "path";
+import adminRouter from "./routes/admin.js";
 
 dotenv.config();
 const app = express();
@@ -61,6 +62,7 @@ app.use("/api/v1/ajencys", ajencyRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/reviews", reviewRoutes);
 app.use("/api/v1/events", eventRoute);
+app.use("/api/v1/admin", adminRouter)
 
 app.listen(port, () => {
     connect();
