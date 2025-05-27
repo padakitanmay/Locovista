@@ -1,11 +1,17 @@
-const express = require('express');
-const { AdminLogin, getAllPendingTours, AcceptTour, RejectTour } = require('../controller/adminController');
+import express from "express";
+import {
+    AdminLogin,
+    getAllPendingTours,
+    AcceptTour,
+    RejectTour,
+} from "../controller/adminController.js";
+import { verifyAdmin } from "../utils/verify.js";
 
 const router = express.Router();
 
-router.post('/login', AdminLogin);
-router.get('/getAllPendingReq', getAllPendingTours);
-router.get('/accept/:id', AcceptTour);
-router.get('/reject/:id', RejectTour);
+router.post("/login", verifyAdmin, AdminLogin);
+router.get("/getAllPendingReq", verifyAdmin, getAllPendingTours);
+router.get("/accept/:id", verifyAdmin, AcceptTour);
+router.get("/reject/:id", verifyAdmin, RejectTour);
 
-module.exports = router;
+export default router;

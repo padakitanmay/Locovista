@@ -12,7 +12,7 @@ const Login = () => {
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
-        role:"user"
+        role: "",
     });
 
     const handleChange = (e) => {
@@ -31,18 +31,19 @@ const Login = () => {
             });
 
             const result = await res.json();
-            console.log(result.data);
 
             if (!res.ok) {
                 alert(result.message);
             } else {
                 let user = result.data;
-                console.log(user);
+                let role = result.role;
                 // Store the user data and token in localStorage
                 localStorage.setItem("user", JSON.stringify(user)); // Store user data
                 localStorage.setItem("token", result.token); // Store token
                 dispatch({ type: "LOGIN_SUCCESS", payload: user });
-                navigate("/home");
+                console.log(user);
+                if (role === "admin") navigate("/admin/dashboard");
+                else  navigate("/home");
             }
         } catch (err) {
             console.error(err);

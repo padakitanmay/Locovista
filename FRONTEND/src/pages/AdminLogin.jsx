@@ -23,7 +23,7 @@ const AdminLogin = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`${BASE_URL}/auth/login`, {
+            const res = await fetch(`${BASE_URL}/admin/login`, {
                 method: "post",
                 headers: {
                     "content-type": "application/json",

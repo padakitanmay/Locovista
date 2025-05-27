@@ -9,7 +9,7 @@ import {
     getFeaturedAjency,
     getAjencyCount,
 } from "../controller/ajencyController.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { verifyAdmin } from "../utils/verify.js";
 
 const router = express.Router();
 
