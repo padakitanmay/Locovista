@@ -10,8 +10,10 @@ const AdminDashboard = () => {
     const fetchPendingTours = async () => {
         try {
             const res = await fetch(`${BASE_URL}/admin/getAllPendingReq`, {
+                method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
                 },
             });
 
@@ -29,7 +31,7 @@ const AdminDashboard = () => {
     const handleAction = async (id, action) => {
         try {
             const res = await fetch(`${BASE_URL}/admin/${action}/${id}`, {
-                method: "PATCH",
+                method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

@@ -5,14 +5,13 @@ import {
     AcceptTour,
     RejectTour,
 } from "../controller/adminController.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { verifyAdmin } from "../utils/verify.js";
 
 const router = express.Router();
 
-router.use(verifyAdmin);
 router.post("/login", verifyAdmin, AdminLogin);
-router.get("/getAllPendingReq", getAllPendingTours);
-router.get("/accept/:id", AcceptTour);
-router.get("/reject/:id", RejectTour);
+router.get("/getAllPendingReq", verifyAdmin, getAllPendingTours);
+router.get("/accept/:id", verifyAdmin, AcceptTour);
+router.get("/reject/:id", verifyAdmin, RejectTour);
 
 export default router;
