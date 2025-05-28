@@ -41,7 +41,7 @@ const PlaceDetails = () => {
         const fetchAIMessage = async () => {
             if (!title || !desc || !city) return;
 
-            const prompt = `Write a short, friendly travel description for a destination called "${title}" in "${city}". Use the following highlight: "${desc}". Keep it under 100 words.`;
+            const prompt = `Write a short, friendly travel description for a destination called "${title}" in "${city}". Use the following highlight: "${desc}". Keep it under 100 words. List nearby hotels and travel facilites`;
 
             try {
                 const api = GEMINI_API;
