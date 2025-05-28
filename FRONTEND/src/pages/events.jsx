@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BASE_URL } from "../utills/config";
 import { useNavigate } from "react-router-dom";
 import CommonSection from "../shared/commonSection";
+import { AuthContext } from "../components/context/AuthContext";
 
 const Events = () => {
+    const { user } = useContext(AuthContext);
+
     const fields = ["Title", "City", "Date", "Description"];
 
     const navigate = useNavigate();
@@ -33,7 +36,7 @@ const Events = () => {
         const form = new FormData();
 
         console.log(formData);
-        
+
         for (const key in formData) {
             form.append(key, formData[key]);
         }
@@ -49,7 +52,7 @@ const Events = () => {
         }
     };
 
-    return (
+    return user ? (
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-4">
             <CommonSection title={"Add a event"} />
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -113,6 +116,10 @@ const Events = () => {
                 </div>
             </div>
         </div>
+    ) : (
+        <>
+            <CommonSection title={"Login to contribute event"} />
+        </>
     );
 };
 

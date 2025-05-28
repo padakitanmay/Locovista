@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BASE_URL } from "../utills/config";
 import { useNavigate } from "react-router-dom";
 import CommonSection from "../shared/commonSection";
+import { AuthContext } from "../components/context/AuthContext";
 
 const Contribute = () => {
     const fields = [
@@ -12,6 +13,8 @@ const Contribute = () => {
         "Description",
         "Unlock Radius",
     ];
+
+    const { user } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -59,7 +62,7 @@ const Contribute = () => {
         }
     };
 
-    return (
+    return user ? (
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-4">
             <CommonSection title={"Contribute a Tour"} />
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -139,6 +142,10 @@ const Contribute = () => {
                 </div>
             </div>
         </div>
+    ) : (
+        <>
+            <CommonSection title={"Login to contribute tour"} />
+        </>
     );
 };
 

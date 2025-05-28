@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import CommonSection from "../shared/commonSection";
 import { Container, Row, Col } from "reactstrap";
@@ -6,6 +6,7 @@ import TourCard from "./../shared/placeCard";
 import SearchBar from "./../shared/searchbar";
 import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utills/config";
+import { AuthContext } from "../components/context/AuthContext";
 
 const Tours = () => {
     const [pageCount, setPageCount] = useState(0);
@@ -14,6 +15,7 @@ const Tours = () => {
     const [filteredTours, setFilteredTours] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const { user } = useContext(AuthContext);
 
     const location = useLocation();
     const query = new URLSearchParams(location.search);
@@ -60,7 +62,7 @@ const Tours = () => {
                 } else {
                     const res = await fetch(url);
                     const data = await res.json();
-                    
+
                     setTours(data.data || []);
                     setLoading(false);
                 }
@@ -88,7 +90,7 @@ const Tours = () => {
         }
     }, [unlockedCity, tours]);
 
-    return (
+    return user ? (
         <>
             <CommonSection title={"Places to Visit"} />
             <section className="pt-0">
@@ -129,6 +131,10 @@ const Tours = () => {
                     )}
                 </Container>
             </section>
+        </>
+    ) : (
+        <>
+            <CommonSection title={"Login to view"} />
         </>
     );
 };

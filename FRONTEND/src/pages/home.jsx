@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-//import useFetch from "../hooks/useFetch";
 import { toast } from "react-toastify";
 import { Container, Row, Col } from "reactstrap";
-import galleryVideo from "../assets/images/galleryVideo.mp4";
 import Subtitle from "./../shared/subtitle";
 import SearchBar from "../shared/searchbar";
-// import ServicesList from "../services/servicesList";
 import FeaturedTourList from "../featuredTour/featuredTourList";
-//import Reviews from "../components/reviews/reviews";
 import homeBg from "../assets/images/india.jpg";
 import { BASE_URL } from "../utills/config";
-import Events from "../components/Events";
+import Events from "../events/Events";
+import { AuthContext } from "../components/context/AuthContext";
 
 const Home = () => {
     const [location, setLocation] = useState({ lat: null, lng: null });
     const [hiddenSpots, setHiddenSpots] = useState([]);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -77,7 +75,7 @@ const Home = () => {
         }
     }, [location]);
 
-    return (
+    return user ? (
         <>
             {/* Home Page Section */}
             <section
@@ -197,6 +195,26 @@ const Home = () => {
                         <Events />
                     </Row>
                 </Container>
+            </section>
+        </>
+    ) : (
+        <>
+            <section
+                className="relative h-auto w-full py-10 px-8 bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center text-center"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 1, 0.42), rgba(0, 0, 1, 0.549)), url(${homeBg})`,
+                }}
+            >
+                <div className="absolute inset-0 z-0"></div>
+                <div className="relative z-10 text-white text-center">
+                    {/* <Subtitle subtitle="Plan Right Before Starting Your Experience" /> */}
+                    <h2 className="text-4xl font-medium py-6">
+                        <strong>Login First</strong> 
+                    </h2>
+                    <div className="w-auto h-auto">
+                        <SearchBar />
+                    </div>
+                </div>
             </section>
         </>
     );

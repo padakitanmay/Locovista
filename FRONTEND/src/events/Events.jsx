@@ -1,7 +1,7 @@
 import { Col } from "reactstrap";
 import { BASE_URL } from "../utills/config";
 import useFetch from "../hooks/useFetch";
-import EventCard from "./EventCard";
+import EventCard from "../shared/EventCard";
 
 const Events = () => {
     const {

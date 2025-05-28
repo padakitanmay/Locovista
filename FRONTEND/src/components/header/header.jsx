@@ -21,16 +21,16 @@ const Header = () => {
         nav_links = [
             { path: "/admin/dashboard", display: "Admin Dashboard" },
             { path: "/tours", display: "Tours" },
-            { path: "/contribute", display: "Contribute" },
-            { path: "/events", display: "Events" },
+            { path: "/contribute", display: "Contribute Tour" },
+            { path: "/events", display: "Contribute Events" },
             { path: "/about", display: "About" },
         ];
     } else {
         nav_links = [
             { path: "/home", display: "Home" },
             { path: "/tours", display: "Tours" },
-            { path: "/contribute", display: "Contribute" },
-            { path: "/events", display: "Events" },
+            { path: "/contribute", display: "Contribute Tour" },
+            { path: "/events", display: "Contribute Events" },
             { path: "/about", display: "About" },
         ];
     }
