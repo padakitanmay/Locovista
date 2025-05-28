@@ -1,4 +1,5 @@
 import Ajency from "../models/Ajency.js";
+
 export const createAjency = async (req, res) => {
   try {
     const newAjency = new Ajency(req.body);
