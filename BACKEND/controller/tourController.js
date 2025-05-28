@@ -3,7 +3,7 @@ import Tour from "../models/Tour.js";
 export const createTour = async (req, res) => {
     try {
         const { Title, City, Address, Distance, Description, isHidden } =
-            new Tour(req.body);
+            req.body;
 
         const { lat, lng } = await getCoordinatesFromAddress(Address);
 
@@ -196,21 +196,22 @@ export const getCoordinates = async (req, res) => {
 
 export const unlockTours = async (req, res) => {
     const { lat, lng } = req.query;
+
+    // Parse and construct user location
     const userLocation = [parseFloat(lng), parseFloat(lat)];
-    console.log(lat, lng);
+
+    // MongoDB geospatial query
     const nearbyTours = await Tour.find({
-        // isHidden: true,
         location: {
             $near: {
                 $geometry: {
                     type: "Point",
                     coordinates: userLocation,
                 },
-                $maxDistance: 40000, // meters
+                $maxDistance: 400000, // within 400 km
             },
         },
     });
-    //console.log(nearbyTours);
 
     res.json(nearbyTours);
 };

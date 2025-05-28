@@ -11,7 +11,7 @@ import {
     getCoordinates,
     unlockTours,
 } from "../controller/tourController.js";
-import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
+import { verifyAdmin, verifyUser } from "../utils/verify.js";
 import upload from "../middleware/multer.js";
 
 const router = express.Router();

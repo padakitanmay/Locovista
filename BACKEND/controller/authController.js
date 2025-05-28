@@ -49,7 +49,7 @@ export const login = async (req, res) => {
                 .json({ success: false, message: "Wrong password!" });
         }
 
-        const { password, role, ...rest } = user._doc;
+        const { password, ...rest } = user._doc;
 
         // Create JWT token
         const token = jwt.sign(
@@ -71,7 +71,7 @@ export const login = async (req, res) => {
             success: true,
             message: "successfully login",
             data: { ...rest },
-            role,
+            role: user?._doc?.role,
         });
     } catch (err) {
         console.log(err);

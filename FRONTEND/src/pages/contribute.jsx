@@ -43,7 +43,6 @@ const Contribute = () => {
         e.preventDefault();
         const form = new FormData();
 
-        console.log(formData);
         for (const key in formData) {
             form.append(key, formData[key]);
         }

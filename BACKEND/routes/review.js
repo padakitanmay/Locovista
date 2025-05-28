@@ -3,7 +3,7 @@ import {
     createReview,
     getTourReviews,
 } from "../controller/reviewController.js";
-import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
+import { verifyAdmin, verifyUser } from "../utils/verify.js";
 
 const router = express.Router();
 

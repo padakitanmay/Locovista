@@ -1,7 +1,6 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+//import useFetch from "../hooks/useFetch";
 import { toast } from "react-toastify";
 import { Container, Row, Col } from "reactstrap";
 import galleryVideo from "../assets/images/galleryVideo.mp4";
@@ -9,7 +8,7 @@ import Subtitle from "./../shared/subtitle";
 import SearchBar from "../shared/searchbar";
 // import ServicesList from "../services/servicesList";
 import FeaturedTourList from "../featuredTour/featuredTourList";
-import Reviews from "../components/reviews/reviews";
+//import Reviews from "../components/reviews/reviews";
 import homeBg from "../assets/images/abc.jpg";
 import { BASE_URL } from "../utills/config";
 
@@ -18,7 +17,6 @@ const Home = () => {
     const [hiddenSpots, setHiddenSpots] = useState([]);
     const navigate = useNavigate();
 
-    // Step 1: Request location once
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -36,28 +34,47 @@ const Home = () => {
         );
     }, []);
 
-    // Step 2: Use Fetch hook only if location is available
-    const url =
-        location.lat && location.lng
-            ? `http://${BASE_URL}/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`
-            : null;
-    const { data, loading, error } = useFetch(url);
-
-    // Step 3: React to fetched data
     useEffect(() => {
-        if (data && data.length > 0) {
-            setHiddenSpots(data);
+        if (location.lat && location.lng) {
+            const fetchHiddenSpots = async () => {
+                try {
+                    const response = await fetch(
+                        `${BASE_URL}/tours/unlock-nearby?lat=${location.lat}&lng=${location.lng}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    );
 
-            toast.success(
-                `🎉 You've unlocked a hidden place: ${data[0].title}`,
-                {
-                    onClick: () => navigate("/tours?filter=hiddenNearby"),
-                    autoClose: 5000,
-                    style: { cursor: "pointer" }, // optional: show pointer on hover
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch hidden spots");
+                    }
+
+                    const result = await response.json();
+                    if (result.length > 0) {
+                        setHiddenSpots(result);
+
+                        toast.success(
+                            `🎉 You've unlocked a hidden place: ${result[0].title}`,
+                            {
+                                onClick: () =>
+                                    navigate("/tours?filter=hiddenNearby"),
+                                autoClose: 5000,
+                                style: { cursor: "pointer" },
+                            }
+                        );
+                    }
+                } catch (error) {
+                    console.error("Fetch error:", error);
+                    toast.error("Could not load hidden spots.");
                 }
-            );
+            };
+
+            fetchHiddenSpots();
         }
-    }, [data]);
+    }, [location]);
 
     return (
         <>
@@ -169,7 +186,7 @@ const Home = () => {
             </section>
 
             {/* Reviews Section */}
-            <section className="py-12">
+            {/* <section className="py-12">
                 <Container>
                     <Row>
                         <Col lg="12">
@@ -181,7 +198,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
         </>
     );
 };

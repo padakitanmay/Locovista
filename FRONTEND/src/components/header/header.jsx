@@ -4,14 +4,6 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { AuthContext } from "../context/AuthContext";
 
-const nav_links = [
-    { path: "/home", display: "Home" },
-    { path: "/tours", display: "Tours" },
-    { path: "/contribute", display: "Contribute" },
-    { path: "/events", display: "Events"},
-    { path: "/about", display: "About" },
-];
-
 const Header = () => {
     const headerRef = useRef(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
@@ -22,6 +14,26 @@ const Header = () => {
         dispatch({ type: "LOGOUT" });
         navigate("/");
     };
+
+    let nav_links;
+
+    if (user?.role === "admin") {
+        nav_links = [
+            { path: "/admin/dashboard", display: "Admin Dashboard" },
+            { path: "/tours", display: "Tours" },
+            { path: "/contribute", display: "Contribute" },
+            { path: "/events", display: "Events" },
+            { path: "/about", display: "About" },
+        ];
+    } else {
+        nav_links = [
+            { path: "/home", display: "Home" },
+            { path: "/tours", display: "Tours" },
+            { path: "/contribute", display: "Contribute" },
+            { path: "/events", display: "Events" },
+            { path: "/about", display: "About" },
+        ];
+    }
 
     useEffect(() => {
         const stickyHeaderFunc = () => {
