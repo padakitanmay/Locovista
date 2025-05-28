@@ -1,19 +1,31 @@
+import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import {
+    Container,
+    Row,
+    Col,
+    Form,
+    ListGroup,
+    Card,
+    Modal,
+    ModalHeader,
+    ModalBody,
+} from "reactstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React, { useRef, useState } from "react";
 import avatar from "../assets/images/avatar.jpg";
 import calculateAvgRating from "../utills/avgRating";
-import { useParams } from "react-router-dom";
-import { Container, Row, Col, Form, ListGroup, Card } from "reactstrap";
-import Booking from "../components/booking/booking";
 import useFetch from "../hooks/useFetch";
-import { BASE_URL } from "../utills/config";
+import { BASE_URL, GEMINI_API } from "../utills/config";
+import axios from "axios";
 
 const PlaceDetails = () => {
     const { id } = useParams();
     const reviewMsgRef = useRef("");
     const [tourRating, setTourRating] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [aiMessage, setAiMessage] = useState("");
 
     const { data: t } = useFetch(`${BASE_URL}/tours/${id}`);
     const { photo, title, address, desc, reviews, city, distance } = t;
@@ -24,6 +36,42 @@ const PlaceDetails = () => {
         const reviewText = reviewMsgRef.current.value;
         alert(`${reviewText}, ${tourRating}`);
     };
+
+    useEffect(() => {
+        const fetchAIMessage = async () => {
+            if (!title || !desc || !city) return;
+
+            const prompt = `Write a short, friendly travel description for a destination called "${title}" in "${city}". Use the following highlight: "${desc}". Keep it under 100 words.`;
+
+            try {
+                const api = GEMINI_API;
+
+                console.log(api);
+                const response = await axios.post(
+                    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+                    {
+                        contents: [{ parts: [{ text: prompt }] }],
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "x-goog-api-key": api, // 🔑 Replace with your actual Gemini API key
+                        },
+                    }
+                );
+
+                const aiText =
+                    response.data.candidates?.[0]?.content?.parts?.[0]?.text ||
+                    "Welcome!";
+                setAiMessage(aiText);
+                setShowModal(true);
+            } catch (err) {
+                console.error("Gemini API error:", err);
+            }
+        };
+
+        fetchAIMessage();
+    }, [title, desc, city]);
 
     return (
         <section>
@@ -165,6 +213,20 @@ const PlaceDetails = () => {
                                 ))}
                             </ListGroup>
                         </div>
+                        {/* AI Popup Modal */}
+                        <Modal
+                            isOpen={showModal}
+                            toggle={() => setShowModal(!showModal)}
+                        >
+                            <ModalHeader
+                                toggle={() => setShowModal(!showModal)}
+                            >
+                                About This Place
+                            </ModalHeader>
+                            <ModalBody>
+                                <p>{aiMessage}</p>
+                            </ModalBody>
+                        </Modal>
                     </Col>
                     {/* <Col lg='4'>
                         <Booking tour={t} avgRating={avgRating} />
