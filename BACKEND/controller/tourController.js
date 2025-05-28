@@ -109,14 +109,18 @@ export const getSingleTour = async (req, res) => {
 export const getAllTour = async (req, res) => {
     //for pagination
     const page = parseInt(req.query.page);
+    console.log(page);
+    
     try {
-        const tours = await Tour.find({})
+        const tours = await Tour.find({isApproved : true})
             .skip(page * 8)
             .limit(8);
-        res.status(200).json({
+
+        console.log(tours.length)
+       return res.status(200).json({
             success: true,
             count: tours.length,
-            data: tours,
+            data: tours,    
         });
     } catch (err) {
         res.status(500).json({
@@ -136,13 +140,14 @@ export const getTourBySearch = async (req, res) => {
     const filter = {};
     if (city) {
         filter.city = city;
+        filter.isApproved = true;
     }
-    if (distance) {
-        filter.distance = { $lte: parseInt(distance) };
-    }
-    if (maxGroupSize) {
-        filter.maxGroupSize = { $lte: parseInt(maxGroupSize) };
-    }
+    // if (distance) {
+    //     filter.distance = { $lte: parseInt(distance) };
+    // }
+    // if (maxGroupSize) {
+    //     filter.maxGroupSize = { $lte: parseInt(maxGroupSize) };
+    // }
 
     try {
         // Use the filter object to find tours that match the search criteria
@@ -161,7 +166,7 @@ export const getTourBySearch = async (req, res) => {
 //get featured tour
 export const getFeaturedTour = async (req, res) => {
     try {
-        const tours = await Tour.find({ featured: true }).limit(8);
+        const tours = await Tour.find({ featured: true, isApproved : true }).limit(8);
         res.status(200).json({ success: true, data: tours });
     } catch (err) {
         res.status(500).json({

@@ -60,6 +60,7 @@ const Tours = () => {
                 } else {
                     const res = await fetch(url);
                     const data = await res.json();
+                    
                     setTours(data.data || []);
                     setLoading(false);
                 }
@@ -105,8 +106,8 @@ const Tours = () => {
                     {error && <h4 className="text-center pt-5">{error}</h4>}
                     {!loading && !error && (
                         <Row>
-                            {filteredTours
-                                ?.slice(page * 8, (page + 1) * 8)
+                            {tours
+                                // ?.slice(page * 8, (page + 1) * 8)
                                 .map((tour) => (
                                     <Col lg="3" className="mb-4" key={tour.id}>
                                         <TourCard tour={tour} />
