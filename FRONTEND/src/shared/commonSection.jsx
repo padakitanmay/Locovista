@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import imageUrl from "../assets/images/tour.jpg";
+import imageUrl from "../assets/images/taj.jpg";
 
 const CommonSection = ({ title }) => {
     return (

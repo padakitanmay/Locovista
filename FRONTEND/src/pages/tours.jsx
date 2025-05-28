@@ -91,13 +91,6 @@ const Tours = () => {
     return (
         <>
             <CommonSection title={"Places to Visit"} />
-            <section>
-                <Container>
-                    <Row className="flex justify-center">
-                        <SearchBar />
-                    </Row>
-                </Container>
-            </section>
             <section className="pt-0">
                 <Container>
                     {loading && (

@@ -25,3 +25,20 @@ export const createEvent = async (req, res) => {
         });
     }
 };
+
+export const getAllEvents = async (req, res) => {
+    try {
+        const events = await Event.find();
+        res.status(200).json({
+            success: true,
+            message: "Events fetched successfully",
+            data: events,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch events",
+            error: err.message,
+        });
+    }
+};

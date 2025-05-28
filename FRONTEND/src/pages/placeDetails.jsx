@@ -16,7 +16,6 @@ const PlaceDetails = () => {
     const [tourRating, setTourRating] = useState(null);
 
     const { data: t } = useFetch(`${BASE_URL}/tours/${id}`);
-    console.log(t);
     const { photo, title, address, desc, reviews, city, distance } = t;
     const { totalRating, avgRating } = calculateAvgRating(reviews);
 

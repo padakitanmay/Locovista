@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Tour from "../models/Tour.js";
 
 export const createTour = async (req, res) => {
@@ -88,8 +89,9 @@ export const deleteTour = async (req, res) => {
 //getSingle tour
 export const getSingleTour = async (req, res) => {
     const { id } = req.params;
+
     try {
-        const tour = await Tour.findById(id);
+        const tour = await Tour.findOne({ _id: id });
         if (!tour) {
             return res
                 .status(404)
@@ -109,18 +111,17 @@ export const getSingleTour = async (req, res) => {
 export const getAllTour = async (req, res) => {
     //for pagination
     const page = parseInt(req.query.page);
-    console.log(page);
-    
+
     try {
-        const tours = await Tour.find({isApproved : true})
+        const tours = await Tour.find({ isApproved: true })
             .skip(page * 8)
             .limit(8);
 
-        console.log(tours.length)
-       return res.status(200).json({
+        console.log(tours.length);
+        return res.status(200).json({
             success: true,
             count: tours.length,
-            data: tours,    
+            data: tours,
         });
     } catch (err) {
         res.status(500).json({
@@ -166,7 +167,10 @@ export const getTourBySearch = async (req, res) => {
 //get featured tour
 export const getFeaturedTour = async (req, res) => {
     try {
-        const tours = await Tour.find({ featured: true, isApproved : true }).limit(8);
+        const tours = await Tour.find({
+            featured: true,
+            isApproved: true,
+        }).limit(8);
         res.status(200).json({ success: true, data: tours });
     } catch (err) {
         res.status(500).json({

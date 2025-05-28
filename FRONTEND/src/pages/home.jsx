@@ -9,8 +9,9 @@ import SearchBar from "../shared/searchbar";
 // import ServicesList from "../services/servicesList";
 import FeaturedTourList from "../featuredTour/featuredTourList";
 //import Reviews from "../components/reviews/reviews";
-import homeBg from "../assets/images/abc.jpg";
+import homeBg from "../assets/images/india.jpg";
 import { BASE_URL } from "../utills/config";
+import Events from "../components/Events";
 
 const Home = () => {
     const [location, setLocation] = useState({ lat: null, lng: null });
@@ -87,7 +88,7 @@ const Home = () => {
             >
                 <div className="absolute inset-0 z-0"></div>
                 <div className="relative z-10 text-white text-center">
-                    <Subtitle subtitle="Plan Right Before Starting Your Experience" />
+                    {/* <Subtitle subtitle="Plan Right Before Starting Your Experience" /> */}
                     <h2 className="text-4xl font-medium py-6">
                         <strong>Locovista |</strong> Building Memories Across
                         the World!
@@ -99,7 +100,7 @@ const Home = () => {
             </section>
 
             {/* Experience Section */}
-            <section className="py-12">
+            {/* <section className="py-12">
                 <Container>
                     <Row>
                         <Col lg="6">
@@ -110,9 +111,7 @@ const Home = () => {
                                     serve you
                                 </h2>
                                 <p className="text-lg text-gray-700">
-                                    Lorem ipsum dolor sit, amet <br />
-                                    consectetur adipisicing elit. Inventore
-                                    dicta consectetur natus.
+                                    Latest Tours are found here!!
                                 </p>
                             </div>
                             <div className="flex justify-around items-center mt-10">
@@ -153,7 +152,7 @@ const Home = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
             {/* Our Service Section
             <section className="py-12">
@@ -186,19 +185,19 @@ const Home = () => {
             </section>
 
             {/* Reviews Section */}
-            {/* <section className="py-12">
+            <section className="py-12">
                 <Container>
                     <Row>
-                        <Col lg="12">
-                            <Subtitle subtitle="Our Clients" />
-                            <h2 className="text-2xl font-medium text-primary mt-4">
-                                What our Clients say about us:
+                        <Col lg="12" className="mb-8">
+                            <Subtitle subtitle="Events" />
+                            <h2 className="text-2xl font-medium text-primary">
+                                Events
                             </h2>
-                            <Reviews />
                         </Col>
+                        <Events />
                     </Row>
                 </Container>
-            </section> */}
+            </section>
         </>
     );
 };
