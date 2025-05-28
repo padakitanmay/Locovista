@@ -11,19 +11,13 @@ const SearchBar = () => {
 
     const searchHandler = async () => {
         const location = locationRef.current.value;
-        const distance = distanceRef.current.value;
-        const maxGroupSize = maxGroupSizeRef.current.value;
 
-        if (
-            location.trim() === "" ||
-            distance.trim() === "" ||
-            maxGroupSize.trim() === ""
-        ) {
+        if ( location.trim() === "") {
             return alert("All Fields are required!");
         }
 
         const res = await fetch(
-            `${BASE_URL}/tours/search/getTourBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`
+            `${BASE_URL}/tours/search/getTourBySearch?city=${location}`
         );
 
         if (!res.ok) alert("Something went wrong");
@@ -31,7 +25,7 @@ const SearchBar = () => {
         const result = await res.json();
 
         navigate(
-            `/tours/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
+            `/tours/search?city=${location}`,
             { state: result.data }
         );
     };
@@ -56,7 +50,7 @@ const SearchBar = () => {
                         />
                     </div>
                 </FormGroup>
-                <FormGroup className="flex gap-3 border-r-2 border-gray-300 pr-3">
+                {/* <FormGroup className="flex gap-3 border-r-2 border-gray-300 pr-3">
                     <span className="text-2xl text-red-400">
                         <i className="ri-pin-distance-line"></i>
                     </span>
@@ -83,7 +77,7 @@ const SearchBar = () => {
                             className="border-none rounded-lg text-black text-sm placeholder-gray-500 focus:outline-none"
                         />
                     </div>
-                </FormGroup>
+                </FormGroup> */}
                 <span
                     className="text-xl p-2 bg-red-400 text-white rounded-r-2xl cursor-pointer flex items-center justify-center"
                     onClick={searchHandler}

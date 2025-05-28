@@ -134,7 +134,7 @@ export const getAllTour = async (req, res) => {
 //get by search
 export const getTourBySearch = async (req, res) => {
     // Assuming you pass the search criteria in the request query parameters
-    const { city, distance, maxGroupSize } = req.query;
+    const { city } = req.query;
 
     // Construct a filter object based on the provided search criteria
     const filter = {};
