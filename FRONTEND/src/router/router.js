@@ -9,7 +9,6 @@ import Register from "../pages/register";
 import SerchResultList from "../pages/searchResultList";
 import Thankyou from "../pages/thankyou";
 import About from "../pages/about";
-import Emergency from "../pages/emergency";
 import Urgent from "../pages/urgent";
 import Contribute from "../pages/contribute";
 import Contri from "../pages/contri";
@@ -28,7 +27,6 @@ const Router = () => {
             <Route path="/urgent" element={<Urgent />} />
             <Route path="/contri" element={<Contri />} />
             <Route path="/about" element={<About />} />
-            <Route path="/emergency" element={<Emergency />} />
             <Route path="/contribute" element={<Contribute />} />
             <Route path="/events" element={<Events />} />
             <Route path="/tours" element={<Tours />} />
