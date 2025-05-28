@@ -125,14 +125,6 @@ const Header = () => {
                                     >
                                         Logout
                                     </button>
-                                    <button className="bg-red-500 text-white py-2 px-4 rounded">
-                                        <Link
-                                            to="/emergency"
-                                            className="text-white no-underline"
-                                        >
-                                            Emergency
-                                        </Link>
-                                    </button>
                                 </div>
                             ) : (
                                 <div className="flex items-center space-x-4">
@@ -149,7 +141,7 @@ const Header = () => {
                                             to="/register"
                                             className="text-white no-underline"
                                         >
-                                            Register
+                                            Sign Up
                                         </Link>
                                     </button>
                                 </div>
