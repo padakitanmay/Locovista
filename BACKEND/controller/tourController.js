@@ -208,7 +208,6 @@ export const unlockTours = async (req, res) => {
     // Parse and construct user location
     const userLocation = [parseFloat(lng), parseFloat(lat)];
 
-    // MongoDB geospatial query
     const nearbyTours = await Tour.find({
         location: {
             $near: {
@@ -216,11 +215,10 @@ export const unlockTours = async (req, res) => {
                     type: "Point",
                     coordinates: userLocation,
                 },
-                $maxDistance: 400000, // within 400 km
+                $maxDistance: 40000000, // 40 km
             },
         },
     });
-
     res.json(nearbyTours);
 };
 

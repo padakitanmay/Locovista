@@ -54,7 +54,6 @@ Ensure the output is well-organized and easy to read, using clear labels and sho
             try {
                 const api = GEMINI_API;
 
-                console.log(api);
                 const response = await axios.post(
                     "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
                     {
