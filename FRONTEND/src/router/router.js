@@ -17,6 +17,10 @@ import Map from "../pages/Map.jsx";
 import Events from "../pages/events.jsx";
 import AdminLogin from "../pages/AdminLogin.jsx";
 import AdminDashboard from "../pages/AdminDashboard.jsx";
+import RailwayInfo from "../pages/RailwayInfo.jsx";
+import HotelList from "../pages/HotelList.jsx";
+import HospitalList from "../pages/HospitalList.jsx";
+import PoliceInfo from "../pages/PoliceInfo.jsx";
 
 const Router = () => {
     return (
@@ -30,6 +34,10 @@ const Router = () => {
             <Route path="/contribute" element={<Contribute />} />
             <Route path="/events" element={<Events />} />
             <Route path="/tours" element={<Tours />} />
+            <Route path="/railwayInfo" element={<RailwayInfo />} />
+            <Route path="/hotels" element={<HotelList />} />
+            <Route path="/hospitals" element={<HospitalList />} />
+            <Route path="/police" element={<PoliceInfo />} />
             <Route path="/tours/:id" element={<PlaceDetails />} />
             <Route path="/ajencys/:id" element={<TourDetails />} />
             <Route path="/login" element={<Login />} />

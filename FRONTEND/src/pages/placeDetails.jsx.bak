@@ -41,15 +41,7 @@ const PlaceDetails = () => {
         const fetchAIMessage = async () => {
             if (!title || !desc || !city) return;
 
-            const prompt = `Write a short, friendly travel description for a destination called "${title}" in "${city}", highlighting: "${desc}". Keep the description under 100 words.
-
-Then, present the following information in a clean, visually structured format (no asterisks, hash signs, or markdown symbols):
-
-Nearby Hotels – List 3-5 popular hotels near the destination with their names and brief descriptions.
-
-Travel Facilities – Include nearby transportation options such as airports, train/bus stations, car rentals, etc.
-
-Ensure the output is well-organized and easy to read, using clear labels and short bullet-point lists or sections with line breaks between them.`;
+            const prompt = `Write a short, friendly travel description for a destination called "${title}" in "${city}". Use the following highlight: "${desc}". Keep it under 100 words. List nearby hotels and travel facilites`;
 
             try {
                 const api = GEMINI_API;
