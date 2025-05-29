@@ -1,18 +1,21 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Modal, ModalHeader, ModalBody } from "reactstrap";
 import Subtitle from "./../shared/subtitle";
 import SearchBar from "../shared/searchbar";
 import FeaturedTourList from "../featuredTour/featuredTourList";
 import homeBg from "../assets/images/india.jpg";
-import { BASE_URL } from "../utills/config";
+import { BASE_URL, GEMINI_API } from "../utills/config";
 import Events from "../events/Events";
 import { AuthContext } from "../components/context/AuthContext";
+import axios from "axios";
 
 const Home = () => {
     const [location, setLocation] = useState({ lat: null, lng: null });
     const [hiddenSpots, setHiddenSpots] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [aiMessage, setAiMessage] = useState("");
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -75,6 +78,40 @@ const Home = () => {
         }
     }, [location]);
 
+    useEffect(() => {
+        const fetchAIMessage = async () => {
+
+            const prompt = `Write a short, friendly news summary for a destination called solapur`;
+
+            try {
+                const api = GEMINI_API;
+
+                const response = await axios.post(
+                    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+                    {
+                        contents: [{ parts: [{ text: prompt }] }],
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "x-goog-api-key": api, // 🔑 Replace with your actual Gemini API key
+                        },
+                    }
+                );
+
+                const aiText =
+                    response.data.candidates?.[0]?.content?.parts?.[0]?.text ||
+                    "Welcome!";
+                setAiMessage(aiText);
+                setShowModal(true);
+            } catch (err) {
+                console.error("Gemini API error:", err);
+            }
+        };
+
+        fetchAIMessage();
+    }, []);
+
     return user ? (
         <>
             {/* Home Page Section */}
@@ -96,76 +133,6 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-
-            {/* Experience Section */}
-            {/* <section className="py-12">
-                <Container>
-                    <Row>
-                        <Col lg="6">
-                            <div className="mb-8">
-                                <Subtitle subtitle="Experience" />
-                                <h2 className="text-3xl font-medium text-primary mb-4">
-                                    With all your experience <br /> we will
-                                    serve you
-                                </h2>
-                                <p className="text-lg text-gray-700">
-                                    Latest Tours are found here!!
-                                </p>
-                            </div>
-                            <div className="flex justify-around items-center mt-10">
-                                <div className="text-center">
-                                    <span className="w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">
-                                        999+
-                                    </span>
-                                    <h6 className="text-sm text-gray-700">
-                                        Successful Trips
-                                    </h6>
-                                </div>
-                                <div className="text-center">
-                                    <span className="w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">
-                                        199+
-                                    </span>
-                                    <h6 className="text-sm text-gray-700">
-                                        Regular Clients
-                                    </h6>
-                                </div>
-                                <div className="text-center">
-                                    <span className="w-16 h-16 bg-secondary text-white text-2xl font-semibold rounded-full flex items-center justify-center mb-2">
-                                        3+
-                                    </span>
-                                    <h6 className="text-sm text-gray-700">
-                                        Years of Experience
-                                    </h6>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg="6">
-                            <div className="relative">
-                                <video
-                                    src={galleryVideo}
-                                    className="w-full rounded-2xl shadow-lg"
-                                    controls
-                                />
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section> */}
-
-            {/* Our Service Section
-            <section className="py-12">
-                <Container>
-                    <Row>
-                        <Col lg="3">
-                            <Subtitle subtitle="Our Services" />
-                            <h2 className="text-2xl font-medium text-primary mb-8">
-                                We offer our best Services
-                            </h2>
-                        </Col>
-                        <ServicesList />
-                    </Row>
-                </Container>
-            </section> */}
 
             {/* Featured Tour */}
             <section className="py-12">
@@ -196,6 +163,15 @@ const Home = () => {
                     </Row>
                 </Container>
             </section>
+
+            <Modal isOpen={showModal} toggle={() => setShowModal(!showModal)}>
+                <ModalHeader toggle={() => setShowModal(!showModal)}>
+                    About This Place
+                </ModalHeader>
+                <ModalBody>
+                    <p>{aiMessage}</p>
+                </ModalBody>
+            </Modal>
         </>
     ) : (
         <>
@@ -209,7 +185,7 @@ const Home = () => {
                 <div className="relative z-10 text-white text-center">
                     {/* <Subtitle subtitle="Plan Right Before Starting Your Experience" /> */}
                     <h2 className="text-4xl font-medium py-6">
-                        <strong>Login First</strong> 
+                        <strong>Login First</strong>
                     </h2>
                     <div className="w-auto h-auto">
                         <SearchBar />
