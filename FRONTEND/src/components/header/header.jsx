@@ -128,22 +128,22 @@ const Header = () => {
                                 </div>
                             ) : (
                                 <div className="flex items-center space-x-4">
-                                    <button className="bg-teal-400 text-white py-2 px-4 rounded">
-                                        <Link
-                                            to="/login"
-                                            className="text-white no-underline"
-                                        >
+                                    <Link
+                                        to="/login"
+                                        className="text-white no-underline"
+                                    >
+                                        <button className="bg-teal-400 text-white py-2 px-4 rounded">
                                             Login
-                                        </Link>
-                                    </button>
-                                    <button className="bg-teal-400 text-white py-2 px-4 rounded">
-                                        <Link
-                                            to="/register"
-                                            className="text-white no-underline"
-                                        >
+                                        </button>
+                                    </Link>
+                                    <Link
+                                        to="/register"
+                                        className="text-white no-underline"
+                                    >
+                                        <button className="bg-teal-400 text-white py-2 px-4 rounded">
                                             Sign Up
-                                        </Link>
-                                    </button>
+                                        </button>
+                                    </Link>
                                 </div>
                             )}
                         </div>
