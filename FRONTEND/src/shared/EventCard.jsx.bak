@@ -30,7 +30,7 @@ const EventCard = ({ tour }) => {
                     </div>
 
                     <h5 className="tourTitle mt-2 text-lg font-semibold cursor-pointer text-heading hover:text-secondary">
-                        <div>{title}</div>
+                        <Link to={`/tours/${_id}`}>{title}</Link>
                     </h5>
 
                     <p className="text-sm text-gray-700 mt-2 line-clamp-2">

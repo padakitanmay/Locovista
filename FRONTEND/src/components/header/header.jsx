@@ -6,58 +6,102 @@ import { AuthContext } from "../context/AuthContext";
 
 const Header = () => {
     const headerRef = useRef(null);
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
+    const dropdownRef = useRef(null); // Reference for outside click
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
+
     const navigate = useNavigate();
     const { user, dispatch } = useContext(AuthContext);
 
+    // Toggle dropdowns on click
+    const toggleDropdownClick = (index) => {
+        setOpenDropdownIndex((prev) => (prev === index ? null : index));
+    };
+
+    // Logout logic
     const logout = () => {
         dispatch({ type: "LOGOUT" });
         navigate("/");
     };
 
-    let nav_links;
+    // Handle outside click to close dropdown
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setOpenDropdownIndex(null);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () =>
+            document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
-    if (user?.role === "admin") {
-        nav_links = [
-            { path: "/admin/dashboard", display: "Admin Dashboard" },
-            { path: "/tours", display: "Tours" },
-            { path: "/contribute", display: "Contribute Tour" },
-            { path: "/events", display: "Contribute Events" },
-            { path: "/about", display: "About" },
-        ];
-    } else {
-        nav_links = [
-            { path: "/home", display: "Home" },
-            { path: "/tours", display: "Tours" },
-            { path: "/contribute", display: "Contribute Tour" },
-            { path: "/events", display: "Contribute Events" },
-            { path: "/about", display: "About" },
-        ];
-    }
-
+    // Sticky header on scroll
     useEffect(() => {
         const stickyHeaderFunc = () => {
             if (
                 document.body.scrollTop > 80 ||
                 document.documentElement.scrollTop > 80
             ) {
-                if (headerRef.current) {
-                    headerRef.current.classList?.add("sticky_header");
-                }
+                headerRef.current?.classList?.add("sticky_header");
             } else {
-                if (headerRef.current) {
-                    headerRef.current.classList?.remove("sticky_header");
-                }
+                headerRef.current?.classList?.remove("sticky_header");
             }
         };
 
         window.addEventListener("scroll", stickyHeaderFunc);
-
-        // Clean up the event listener on component unmount
-        return () => {
-            window.removeEventListener("scroll", stickyHeaderFunc);
-        };
+        return () => window.removeEventListener("scroll", stickyHeaderFunc);
     }, []);
+
+    // Links based on role
+    let nav_links;
+    if (user?.role === "admin") {
+        nav_links = [
+            { path: "/admin/dashboard", display: "Admin Dashboard" },
+            { path: "/tours", display: "Tours" },
+            { path: "/about", display: "About" },
+            {
+                display: "Contribute",
+                dropdown: [
+                    { path: "/contribute", display: "Add Places" },
+                    { path: "/events", display: "Events" },
+                ],
+            },
+            {
+                display: "Helpline",
+                dropdown: [
+                    { path: "/railwayInfo", display: "Railways" },
+                    { path: "/hotels", display: "Hotels" },
+                    { path: "/hospitals", display: "Hospitals" },
+                ],
+            },
+        ];
+    } else {
+        nav_links = [
+            { path: "/home", display: "Home" },
+            { path: "/tours", display: "Tours" },
+            {
+                display: "Helpline",
+                dropdown: [
+                    { path: "/railwayInfo", display: "Railways" },
+                    { path: "/hotels", display: "Hotels" },
+                    { path: "/hospitals", display: "Hospitals" },
+                    { path: "/police", display: "Police Stations" },
+                ],
+            },
+            { path: "/about", display: "About" },
+            {
+                display: "Contribute",
+                dropdown: [
+                    { path: "/contribute", display: "Add Places" },
+                    { path: "/events", display: "Events" },
+                ],
+            },
+        ];
+    }
 
     return (
         <header
@@ -67,8 +111,8 @@ const Header = () => {
             <Container>
                 <Row className="h-full items-center">
                     <div className="flex flex-col md:flex-row items-center justify-between w-full h-full">
+                        {/* Logo and Menu Icon */}
                         <div className="flex items-center justify-between w-full md:w-auto">
-                            {/* Logo */}
                             <div className="w-[100px] h-[100px]">
                                 <img
                                     src={logo}
@@ -76,8 +120,6 @@ const Header = () => {
                                     className="w-full h-full object-contain"
                                 />
                             </div>
-
-                            {/* Hamburger Icon */}
                             <div
                                 className="md:hidden flex items-center cursor-pointer"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -86,33 +128,101 @@ const Header = () => {
                             </div>
                         </div>
 
-                        {/* Menu */}
+                        {/* Navigation Menu */}
                         <div
                             className={`md:flex md:items-center md:justify-center flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 ${
                                 isMenuOpen ? "block" : "hidden"
                             }`}
+                            ref={dropdownRef}
                         >
                             <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-0">
-                                {nav_links.map((item, index) => (
-                                    <li key={index}>
-                                        <NavLink
-                                            to={item.path}
-                                            className={({ isActive }) =>
-                                                `text-gray-800 font-medium text-lg no-underline ${
-                                                    isActive
-                                                        ? "text-teal-500"
-                                                        : "hover:text-red-500"
-                                                }`
-                                            }
-                                        >
-                                            {item.display}
-                                        </NavLink>
-                                    </li>
-                                ))}
+                                {nav_links.map((item, index) => {
+                                    const isDropdown = !!item.dropdown;
+
+                                    return (
+                                        <li key={index} className="relative">
+                                            {isDropdown ? (
+                                                <div className="relative">
+                                                    <button
+                                                        onClick={() =>
+                                                            toggleDropdownClick(
+                                                                index
+                                                            )
+                                                        }
+                                                        className="text-gray-800 font-medium text-lg focus:outline-none hover:text-teal-500 flex items-center gap-1"
+                                                    >
+                                                        {item.display}
+                                                        <i className="ri-arrow-down-s-line text-xl"></i>
+                                                    </button>
+
+                                                    {openDropdownIndex ===
+                                                        index && (
+                                                        <ul className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border w-44 z-50">
+                                                            {item.dropdown.map(
+                                                                (
+                                                                    subItem,
+                                                                    subIndex
+                                                                ) => (
+                                                                    <li
+                                                                        key={
+                                                                            subIndex
+                                                                        }
+                                                                    >
+                                                                        <NavLink
+                                                                            to={
+                                                                                subItem.path
+                                                                            }
+                                                                            className={({
+                                                                                isActive,
+                                                                            }) =>
+                                                                                `block px-4 py-2 text-sm font-medium text-gray-800 no-underline transition-colors duration-200 ${
+                                                                                    isActive
+                                                                                        ? "bg-teal-100 text-teal-600"
+                                                                                        : "hover:bg-teal-50 hover:text-teal-500"
+                                                                                }`
+                                                                            }
+                                                                            onClick={() =>
+                                                                                setOpenDropdownIndex(
+                                                                                    null
+                                                                                )
+                                                                            } // Close dropdown on item click
+                                                                        >
+                                                                            {
+                                                                                subItem.display
+                                                                            }
+                                                                        </NavLink>
+                                                                    </li>
+                                                                )
+                                                            )}
+                                                        </ul>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                <NavLink
+                                                    to={item.path}
+                                                    className={({ isActive }) =>
+                                                        `text-gray-800 font-medium text-lg no-underline transition-colors duration-200 ${
+                                                            isActive
+                                                                ? "text-teal-500"
+                                                                : "hover:text-red-500"
+                                                        }`
+                                                    }
+                                                    onClick={() =>
+                                                        setOpenDropdownIndex(
+                                                            null
+                                                        )
+                                                    } // Close any open dropdown on regular nav click
+                                                >
+                                                    {item.display}
+                                                </NavLink>
+                                            )}
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
 
-                        {/* Login/Register */}
+                        {/* Login / User Info */}
                         <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-5 mt-4 md:mt-0">
                             {user ? (
                                 <div className="flex items-center space-x-4">
