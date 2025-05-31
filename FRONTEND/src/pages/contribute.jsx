@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { BASE_URL } from "../utills/config";
-import { useNavigate } from "react-router-dom";
 import CommonSection from "../shared/commonSection";
 import { AuthContext } from "../components/context/AuthContext";
 
@@ -16,7 +15,6 @@ const Contribute = () => {
 
     const { user } = useContext(AuthContext);
 
-    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: "",
         city: "",
@@ -56,7 +54,6 @@ const Contribute = () => {
                 body: form,
             });
             const data = await res.json();
-            navigate("/tours");
         } catch (error) {
             console.log(error.message);
         }
