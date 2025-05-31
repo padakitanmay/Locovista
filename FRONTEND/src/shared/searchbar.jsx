@@ -1,13 +1,11 @@
-import React, { useRef } from "react";
-import { Col, Form, FormGroup } from "reactstrap";
+import { useRef } from "react";
+import { Form, FormGroup } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/config";
 
 const SearchBar = () => {
     const navigate = useNavigate();
     const locationRef = useRef("");
-    const distanceRef = useRef(0);
-    const maxGroupSizeRef = useRef(0);
 
     const searchHandler = async () => {
         const location = locationRef.current.value;
@@ -28,10 +26,6 @@ const SearchBar = () => {
     };
 
     return (
-        // <Col
-
-        //     className="mt-[28rem] p-2 rounded-3xl mx-6 flex items-center shadow-lg bg-teal-400"
-        // >
         <div className="flex items-end justify-center min-h-screen">
             <div className="p-2 rounded-3xl mx-6 items-center shadow-lg bg-teal-400">
                 <Form className="flex items-center gap-4">

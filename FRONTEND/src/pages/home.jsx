@@ -55,7 +55,7 @@ const Home = () => {
                     }
 
                     const result = await response.json();
-                    if (result.length > 0) {
+                    if (result.length > 0 && user) {
                         setHiddenSpots(result);
 
                         toast.success(

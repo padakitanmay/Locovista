@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import CommonSection from "../shared/commonSection";
 import { Container, Row, Col } from "reactstrap";
 import TourCard from "./../shared/placeCard";
-import SearchBar from "./../shared/searchbar";
+//import SearchBar from "./../shared/searchbar";
 import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
 import { AuthContext } from "../components/context/AuthContext";
@@ -101,13 +101,11 @@ const Tours = () => {
                     {error && <h4 className="text-center pt-5">{error}</h4>}
                     {!loading && !error && (
                         <Row>
-                            {tours
-                                // ?.slice(page * 8, (page + 1) * 8)
-                                .map((tour) => (
-                                    <Col lg="3" className="mb-4" key={tour.id}>
-                                        <TourCard tour={tour} />
-                                    </Col>
-                                ))}
+                            {tours.map((tour) => (
+                                <Col lg="3" className="mb-4" key={tour.id}>
+                                    <TourCard tour={tour} />
+                                </Col>
+                            ))}
                             <Col lg="12">
                                 <div className="tourpage flex items-center justify-center mt-4 gap-3">
                                     {[...Array(pageCount).keys()].map(

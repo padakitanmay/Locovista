@@ -5,6 +5,7 @@ import loginImg from "../assets/images/login.jpg";
 import userIcon from "../assets/images/user.png";
 import { BASE_URL } from "../utils/config";
 import { useAuth } from "../components/context/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
     let { dispatch } = useAuth();
@@ -32,21 +33,26 @@ const Login = () => {
 
             const result = await res.json();
 
-            if (!res.ok) {
-                alert(result.message);
-            } else {
+            if (res.status === 404) {
+                toast.error("User not found");
+            } else if (res.status === 401) {
+                toast.error("Inavlid Password");
+            } else if (res.status === 200) {
                 let user = result.data;
                 let role = result.role;
+
                 // Store the user data and token in localStorage
                 localStorage.setItem("user", JSON.stringify(user)); // Store user data
                 localStorage.setItem("token", result.token); // Store token
                 dispatch({ type: "LOGIN_SUCCESS", payload: user });
-                console.log(user);
+
+                toast.success(`Welcome ${user.username}`);
+
                 if (role === "admin") navigate("/admin/dashboard");
-                else  navigate("/home");
+                else navigate("/home");
             }
         } catch (err) {
-            console.error(err);
+            toast.error("Failed to login");
             alert("An error occurred while logging in.");
         }
     };

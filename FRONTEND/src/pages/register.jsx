@@ -5,6 +5,7 @@ import loginImg from "../assets/images/login.jpg";
 import userIcon from "../assets/images/user.png";
 import { AuthContext } from "../components/context/AuthContext";
 import { BASE_URL } from "../utils/config";
+import { toast } from "react-toastify";
 
 const Register = () => {
     const [credentials, setCredentials] = useState({
@@ -30,16 +31,18 @@ const Register = () => {
                 },
                 body: JSON.stringify(credentials),
             });
-
             const result = await res.json();
-            if (!res.ok) {
-                alert(result.message);
+
+            if (res.status !== 200) {
+                toast.error(result.message);
             }
-            console.log(result.data);
+
+            toast.success("User created successfully");
+
             dispatch({ type: "REGISTER_SUCCESS" });
             navigate("/login");
         } catch (err) {
-            alert(err.message);
+            toast.error("Something went wrong");
         }
     };
 
