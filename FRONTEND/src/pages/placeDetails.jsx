@@ -15,9 +15,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import avatar from "../assets/images/avatar.jpg";
-import calculateAvgRating from "../utills/avgRating";
+import calculateAvgRating from "../utils/avgRating";
 import useFetch from "../hooks/useFetch";
-import { BASE_URL, GEMINI_API } from "../utills/config";
+import { BASE_URL, GEMINI_API } from "../utils/config";
 import axios from "axios";
 
 const PlaceDetails = () => {

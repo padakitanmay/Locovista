@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import { BASE_URL } from "../utills/config";
+import { BASE_URL } from "../utils/config";
 import CommonSection from "../shared/commonSection";
 import { AuthContext } from "../components/context/AuthContext";
+import { toast } from "react-toastify";
 
 const Contribute = () => {
     const fields = [
@@ -54,7 +55,11 @@ const Contribute = () => {
                 body: form,
             });
             const data = await res.json();
+            if (res.status === 200) {
+                toast.success("Tour contributed successfully");
+            }
         } catch (error) {
+            toast.error("Something went wrong");
             console.log(error.message);
         }
     };

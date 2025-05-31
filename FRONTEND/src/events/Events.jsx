@@ -1,5 +1,5 @@
 import { Col } from "reactstrap";
-import { BASE_URL } from "../utills/config";
+import { BASE_URL } from "../utils/config";
 import useFetch from "../hooks/useFetch";
 import EventCard from "../shared/EventCard";
 

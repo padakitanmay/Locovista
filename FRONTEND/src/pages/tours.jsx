@@ -5,7 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 import TourCard from "./../shared/placeCard";
 import SearchBar from "./../shared/searchbar";
 import useFetch from "../hooks/useFetch";
-import { BASE_URL } from "../utills/config";
+import { BASE_URL } from "../utils/config";
 import { AuthContext } from "../components/context/AuthContext";
 
 const Tours = () => {

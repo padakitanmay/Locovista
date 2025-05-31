@@ -3,6 +3,7 @@ import { BASE_URL } from "../utills/config";
 import { useNavigate } from "react-router-dom";
 import CommonSection from "../shared/commonSection";
 import { AuthContext } from "../components/context/AuthContext";
+import { toast } from "react-toastify";
 
 const Events = () => {
     const { user } = useContext(AuthContext);
@@ -42,12 +43,16 @@ const Events = () => {
         }
 
         try {
-            const res = await fetch(`${BASE_URL}/events`, {
+            const res = await fetch(`${BASE_URL}/events/createEvent`, {
                 method: "POST",
                 body: form,
             });
             const data = await res.json();
+            if (res.status === 200) {
+                toast.success("Tour contributed successfully");
+            }
         } catch (error) {
+            toast.error("Something went wrong");
             console.log(error.message);
         }
     };

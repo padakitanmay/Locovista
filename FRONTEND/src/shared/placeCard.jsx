@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
-import calculateAvgRating from "../utills/avgRating";
-import { BASE_URL } from "../utills/config";
+import calculateAvgRating from "../utils/avgRating";
+import { BASE_URL } from "../utils/config";
 
 const TourCard = ({ tour }) => {
     const { _id, title, city, photo, featured, reviews, address } = tour;
