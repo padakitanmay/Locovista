@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "../utills/config";
+import { BASE_URL } from "../utils/config";
 
 const AdminDashboard = () => {
     const [pendingTours, setPendingTours] = useState([]);

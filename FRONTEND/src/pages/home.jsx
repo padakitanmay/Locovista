@@ -6,7 +6,7 @@ import Subtitle from "./../shared/subtitle";
 import SearchBar from "../shared/searchbar";
 import FeaturedTourList from "../featuredTour/featuredTourList";
 import homeBg from "../assets/images/india.jpg";
-import { BASE_URL, GEMINI_API } from "../utills/config";
+import { BASE_URL, GEMINI_API } from "../utils/config";
 import Events from "../events/Events";
 import { AuthContext } from "../components/context/AuthContext";
 import axios from "axios";

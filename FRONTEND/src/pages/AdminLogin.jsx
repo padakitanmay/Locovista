@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import loginImg from "../assets/images/login.jpg";
 import userIcon from "../assets/images/user.png";
-import { BASE_URL } from "../utills/config";
+import { BASE_URL } from "../utils/config";
 import { useAuth } from "../components/context/AuthContext";
 
 const AdminLogin = () => {

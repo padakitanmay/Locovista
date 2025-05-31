@@ -5,7 +5,7 @@ import upload from "../middleware/multer.js";
 const router = express.Router();
 
 // Create a new review
-router.post("/", upload.single("photo"), createEvent);
+router.post("/createEvent", upload.single("photo"), createEvent);
 router.get("/getAllEvents", getAllEvents);
 
 export default router;

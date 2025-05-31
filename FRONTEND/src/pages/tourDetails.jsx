@@ -6,8 +6,8 @@ import Booking from "../components/booking/booking";
 import ReviewForm from "../components/reviews/reviewForm";
 import ReviewList from "../components/reviews/reviewList";
 import useFetch from "../hooks/useFetch";
-import { BASE_URL } from "../utills/config";
-import calculateAvgRating from "../utills/avgRating";
+import { BASE_URL } from "../utils/config";
+import calculateAvgRating from "../utils/avgRating";
 
 const TourDetails = () => {
     const { id } = useParams();

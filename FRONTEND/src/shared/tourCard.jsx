@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
-import calculateAvgRating from "../utills/avgRating";
+import calculateAvgRating from "../utils/avgRating";
 
 const TourCard = ({ tour }) => {
     const { _id, title, city, photo, price, featured, reviews } = tour;
