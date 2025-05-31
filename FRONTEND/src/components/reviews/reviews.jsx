@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import defaultAvatar from "../../assets/images/ava1.jpg"; // fallback image
-import { BASE_URL } from "../../utills/config";
+import { BASE_URL } from "../../utils/config";
 
 const Reviews = ({ tourId }) => {
     const [reviews, setReviews] = useState([]);

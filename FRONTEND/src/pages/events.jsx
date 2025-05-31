@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { BASE_URL } from "../utills/config";
+import { BASE_URL } from "../utils/config";
 import { useNavigate } from "react-router-dom";
 import CommonSection from "../shared/commonSection";
 import { AuthContext } from "../components/context/AuthContext";
