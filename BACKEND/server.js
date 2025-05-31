@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import fs from "fs";
 import authRoute from "./routes/auth.js";
 import tourRoute from "./routes/tour.js";
 import userRoute from "./routes/users.js";
@@ -21,6 +22,12 @@ app.use(cookieParser());
 // Other middlewares
 app.use(express.json());
 // ... your routes
+
+const uploadDir = path.join(process.cwd(), "BACKEND/uploads");
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const port = process.env.PORT || 8080;
 const corsOptions = {
@@ -62,7 +69,7 @@ app.use("/api/v1/ajencys", ajencyRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/reviews", reviewRoutes);
 app.use("/api/v1/events", eventRoute);
-app.use("/api/v1/admin", adminRouter)
+app.use("/api/v1/admin", adminRouter);
 
 app.listen(port, () => {
     connect();
