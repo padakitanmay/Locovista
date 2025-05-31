@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
-import { PHOTO_URL } from "../utills/config";
 
 const EventCard = ({ tour }) => {
     const { _id, title, city, photo, date, desc } = tour;
@@ -11,7 +10,7 @@ const EventCard = ({ tour }) => {
             <Card className="border-none">
                 <div className="touImg relative w-full h-44">
                     <img
-                        src={`${PHOTO_URL}${photo}`}
+                        src={photo}
                         alt={title}
                         className="w-full h-full object-cover rounded-t-lg"
                     />

@@ -35,7 +35,7 @@ const TourCard = ({ tour }) => {
             <Card className="border-none">
                 <div className="touImg relative w-full h-44">
                     <img
-                        src={`${BASE_URL.replace("/api/v1", "")}${photo}`}
+                        src={photo}
                         alt="tourImg"
                         className="w-full h-full object-cover rounded-t-lg"
                     />

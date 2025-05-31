@@ -30,7 +30,6 @@ const PlaceDetails = () => {
     const { data: t } = useFetch(`${BASE_URL}/tours/${id}`);
     const { photo, title, address, desc, reviews, city, distance } = t;
     const { totalRating, avgRating } = calculateAvgRating(reviews);
-
     const submitHandler = (e) => {
         e.preventDefault();
         const reviewText = reviewMsgRef.current.value;
@@ -88,10 +87,7 @@ Ensure the output is well-organized and easy to read, using clear labels and sho
                         <div className="mb-10">
                             {photo && photo.length > 0 && (
                                 <img
-                                    src={`${BASE_URL.replace(
-                                        "/api/v1",
-                                        ""
-                                    )}${photo}`}
+                                    src={photo}
                                     alt=""
                                     className="w-full mt-4 rounded-lg"
                                 />

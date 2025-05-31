@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Tour from "../models/Tour.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 export const createTour = async (req, res) => {
     try {
@@ -8,13 +9,15 @@ export const createTour = async (req, res) => {
 
         const { lat, lng } = await getCoordinatesFromAddress(Address);
 
+        const cloudPath = await uploadOnCloudinary(req.file.path);
+
         const tour = await Tour.create({
             title: Title,
             city: City,
             address: Address,
             distance: Distance,
             desc: Description,
-            photo: `/uploads/${req.file.filename}`,
+            photo: cloudPath.url,
             isHidden,
             location: {
                 type: "Point",
@@ -215,7 +218,7 @@ export const unlockTours = async (req, res) => {
                     type: "Point",
                     coordinates: userLocation,
                 },
-                $maxDistance: 40000000, // 40 km
+                $maxDistance: 4000000, // 40 km
             },
         },
     });

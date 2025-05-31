@@ -1,15 +1,18 @@
 import Event from "../models/Events.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 export const createEvent = async (req, res) => {
     try {
         const { Title, City, Date, Description } = req.body;
+
+        const cloudPath = await uploadOnCloudinary(req.file.path);
 
         const event = await Event.create({
             title: Title,
             city: City,
             desc: Description,
             date: Date,
-            photo: `/uploads/${req.file.filename}`,
+            photo: cloudPath.url,
         });
 
         res.status(200).json({

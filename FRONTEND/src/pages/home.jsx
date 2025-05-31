@@ -166,7 +166,7 @@ const Home = () => {
 
             <Modal isOpen={showModal} toggle={() => setShowModal(!showModal)}>
                 <ModalHeader toggle={() => setShowModal(!showModal)}>
-                    About This Place
+                    Daily News
                 </ModalHeader>
                 <ModalBody>
                     <p>{aiMessage}</p>

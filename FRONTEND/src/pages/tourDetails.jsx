@@ -6,7 +6,7 @@ import Booking from "../components/booking/booking";
 import ReviewForm from "../components/reviews/reviewForm";
 import ReviewList from "../components/reviews/reviewList";
 import useFetch from "../hooks/useFetch";
-import { BASE_URL, PHOTO_URL } from "../utills/config";
+import { BASE_URL } from "../utills/config";
 import calculateAvgRating from "../utills/avgRating";
 
 const TourDetails = () => {
@@ -81,7 +81,7 @@ const TourDetails = () => {
     const { title, photo, desc, price, city, distance, maxGroupSize, address } =
         tour || {};
 
-    const { totalRating, avgRating } = calculateAvgRating(reviews);
+    const { avgRating } = calculateAvgRating(reviews);
 
     return (
         <section>
@@ -91,7 +91,7 @@ const TourDetails = () => {
                         <div className="w-full mt-4 mb-10">
                             {photo && photo.length > 0 && (
                                 <img
-                                    src={`${PHOTO_URL}${photo[0]}`}
+                                    src={photo[0]}
                                     alt=""
                                     className="w-full rounded-md mb-10"
                                 />
@@ -139,7 +139,7 @@ const TourDetails = () => {
                                 {photo.slice(1).map((img, index) => (
                                     <div key={index}>
                                         <img
-                                            src={`${PHOTO_URL}${img}`}
+                                            src={img}
                                             alt={`Tour ${index}`}
                                             className="w-full rounded-md h-55"
                                         />
