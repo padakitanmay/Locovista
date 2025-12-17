@@ -52,7 +52,7 @@ const connect = async () => {
         });
         console.log("MongoDB Connected");
     } catch (err) {
-        console.log("MongoDB Connection fault");
+        console.log("MongoDB Connection fault" + err);
     }
 };
 
